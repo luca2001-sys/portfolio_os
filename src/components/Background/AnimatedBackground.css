@@ -1,0 +1,18 @@
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background-color: #ffffff;
+    /* Sfondo bianco di fallback */
+}
+
+/* Assicuriamoci che il canvas creato da p5 non abbia margini */
+.background-container canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}

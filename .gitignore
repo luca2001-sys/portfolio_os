@@ -1,0 +1,40 @@
+# --- Dependencies ---
+node_modules
+.pnpm-store
+
+# --- Build Output (Vite) ---
+dist
+dist-ssr
+
+# --- Local Environment & Secrets (IMPORTANTE) ---
+# Ignora tutti i file .env locali che potrebbero contenere chiavi segrete
+.env.local
+.env.*.local
+*.local
+
+# --- Logs ---
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# --- Testing (se usi Vitest/Jest) ---
+coverage
+
+# --- Editor & IDE Files ---
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# --- OS System Files ---
+.DS_Store
+Thumbs.db
