@@ -1,63 +1,38 @@
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
+import React from 'react';
+import './Menu.css';
 
-interface NavbarProps {
-  onOpenModal: (modalName: "about" | "cv") => void;
+interface MenuProps {
+  onOpenAbout: () => void;
+  onOpenCV: () => void;
+  activeItem: 'about' | 'cv' | null;
 }
 
-export default function Navbar({ onOpenModal }: NavbarProps) {
+const Menu: React.FC<MenuProps> = ({ onOpenAbout, onOpenCV, activeItem }) => {
+  
+  // Non usiamo più activeStyle o style={{...}} inline.
+  // Usiamo solo le classi CSS per permettere all'hover di funzionare sempre.
+
   return (
-    <Box
-      sx={{
-        position: "fixed",
-        top: "32px", 
-        left: "50%",
-        transform: "translateX(-50%)",
+    <nav className="navbar-container">
+      
+      {/* Tasto ABOUT ME */}
+      <button 
+        onClick={onOpenAbout}
+        className={`brutalist-btn ${activeItem === 'about' ? 'active' : ''}`}
+      >
+        ABOUT ME
+      </button>
 
-        zIndex: 1000,
-        backgroundColor: "white",
-        border: "2px solid black",
-        borderRadius: "50px",
-        padding: "6px 8px",
-        boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+      {/* Tasto CV */}
+      <button 
+        onClick={onOpenCV}
+        className={`brutalist-btn ${activeItem === 'cv' ? 'active' : ''}`}
+      >
+        CV
+      </button>
 
-      }}
-    >
-      <Stack direction="row" spacing={1}>
-        <NavButton onClick={() => onOpenModal("about")}>About</NavButton>
-        <NavButton onClick={() => onOpenModal("cv")}>CV</NavButton>
-      </Stack>
-    </Box>
+    </nav>
   );
-}
+};
 
-const NavButton = ({
-  children,
-  onClick,
-}: {
-  children: React.ReactNode;
-  onClick: () => void;
-}) => (
-  <Button
-    onClick={onClick}
-    disableRipple
-    sx={{
-      color: "black",
-      borderRadius: "30px",
-      padding: "0.5rem 1.5rem",
-      textTransform: "none",
-      fontWeight: "bold",
-      fontSize: "1rem",
-      backgroundColor: "transparent",
-      "&:active": { boxShadow: "none", transform: "none" },
-      "&:hover": {
-        backgroundColor: "black",
-        color: "white",
-        transition: "all 0.3s ease",
-      },
-    }}
-  >
-    {children}
-  </Button>
-);
+export default Menu;

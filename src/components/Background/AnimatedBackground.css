@@ -1,3 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+
+/* 2. FONT LOCALI (Alte Haas Grotesk) */
+
+/* Definizione per il REGULAR (Peso 400/Normal) */
+@font-face {
+    font-family: 'AlteHaas'; /* Stesso nome famiglia */
+    src: url('../../assets/font/AlteHaasGroteskRegular.ttf') format('truetype');
+    font-weight: 400; /* Indica al browser che questo file è per il peso normale */
+    font-style: normal;
+}
+
+/* Definizione per il BOLD (Peso 700/Bold) */
+@font-face {
+    font-family: 'AlteHaas'; /* NOTA: Usiamo lo STESSO nome famiglia */
+    src: url('../../assets/font/AlteHaasGroteskBold.ttf') format('truetype');
+    font-weight: 700; /* Indica al browser che questo file è per il grassetto */
+    font-style: bold;
+}
+
 .background-container {
     position: fixed;
     top: 0;

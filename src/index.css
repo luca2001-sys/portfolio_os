@@ -1,14 +1,39 @@
-/* src/index.css */
 :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
+  /* Fallback se AlteHaas non carica subito */
+  font-family: 'AlteHaas', Helvetica, Arial, sans-serif;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Definizione Regular (Peso 400) */
+@font-face {
+  font-family: 'AlteHaas';
+  src: url('./assets/font/AlteHaasGroteskRegular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Definizione Bold (Peso 700) */
+@font-face {
+  font-family: 'AlteHaas';
+  src: url('./assets/font/AlteHaasGroteskBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal; /* Nota: style è normal perché il font è disegnato bold, non inclinato */
 }
 
 body {
-    margin: 0;
-    /* Fondamentale per rimuovere i bordi bianchi */
-    padding: 0;
-    min-width: 320px;
-    min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'AlteHaas', sans-serif; /* Applica il font a tutto */
+  
+  min-width: 320px;
+  min-height: 100vh;
+  
+  /* Opzionale: per assicurarsi che i font siano nitidi */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

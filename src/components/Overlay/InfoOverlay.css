@@ -1,0 +1,69 @@
+/* src/components/Overlay/InfoOverlay.css */
+
+.overlay-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  z-index: 90;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Nascondiamo il cursore vero del sistema quando siamo sullo sfondo */
+  cursor: none; 
+}
+
+.overlay-content {
+  /* Quando sei sul testo, il sistema ripristina il cursore normale (freccia) */
+  cursor: auto; 
+  
+  width: 100%;
+  max-width: 800px;
+  padding: 40px;
+  max-height: 90vh;
+  overflow-y: auto;
+  color: #000000;
+  
+  position: relative;
+  z-index: 2; /* Il testo sta sopra la X */
+}
+
+.overlay-content::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* --- STILE DELLA X --- */
+.custom-cursor-x {
+  position: fixed;
+  top: 0;
+  left: 0;
+  
+  /* Centra la X sulla punta del mouse */
+  margin-left: -18px; 
+  margin-top: -18px; 
+
+  width: 36px;
+  height: 36px;
+  
+  color: rgba(0, 0, 0, 0.75);
+  font-family: sans-serif; 
+  font-weight: 100;
+  font-size: 36px;
+  line-height: 36px;
+  text-align: center;
+  
+  /* FONDAMENTALE PER EVITARE BUG: */
+  pointer-events: none; /* Il click passa attraverso la X */
+  user-select: none;    /* Non si può selezionare */
+  z-index: 9999;        /* Altissimo, ma pointer-events none lo rende 'fantasma' */
+  
+  transition: opacity 0.1s ease; /* Transizione morbida quando appare/spare */
+  will-change: transform; /* Ottimizza le prestazioni per evitare lag */
+}

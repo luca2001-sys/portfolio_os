@@ -1,0 +1,100 @@
+/* src/components/Home/ProjectCard.css */
+
+.card-container {
+  position: absolute;
+  width: 150px; /* Nota: nel codice precedente era 150px, qui nel tuo snippet è 200px. Ho lasciato 200px come da tua richiesta */
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Hover semplice: scala leggermente tutto */
+.card-container:hover {
+  transform: scale(1.02);
+  z-index: 100;
+}
+
+.card-image-wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.card-image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+
+  /* Bordo trasparente di base */
+  border: 1px solid transparent;
+  box-sizing: border-box; 
+  
+  /* --- AGGIUNTA: Transizione fluida per Bordo e Bianco/Nero --- */
+  transition: border-color 0.3s ease, filter 0.3s ease;
+}
+
+/* --- HOVER: BORDO NERO + BIANCO E NERO --- */
+.card-container:hover .card-image-wrapper img {
+  border-color: #000000;
+  
+  /* --- ECCO LA MODIFICA RICHIESTA: --- */
+  filter: grayscale(100%);
+}
+
+/* STILE ETICHETTA */
+.card-label {
+  background-color: #000000;
+  color: #ffffff;
+  
+  font-family: 'AlteHaas', sans-serif; 
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  
+  line-height: 1;
+  padding: 1px 2px;
+  border-radius: 0px;
+  text-align: center;
+  white-space: nowrap;
+
+  border: none; 
+}
+
+/* All'hover sulla card, l'etichetta inverte solo i colori */
+.card-container:hover .card-label {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* ______________________________________________________________________________________ */
+
+/* 1. Applichiamo il bordo al CONTENITORE, non all'immagine */
+.media-item-container {
+  /* Fondamentale: fa sì che il bordo sia "interno" alle misure e non sballi il layout */
+  box-sizing: border-box; 
+  border: 1px solid transparent; 
+  transition: border-color 0.3s ease;
+  position: relative; 
+  z-index: 1; 
+}
+
+/* 2. All'hover sul container, il bordo del container diventa nero */
+.media-item-container:hover {
+  border-color: #000000;
+}
+
+/* 3. Cursore (opzionale, se cliccabile) */
+.media-item-container.clickable {
+  cursor: pointer;
+}
+
+/* Rimuoviamo eventuali vecchi bordi dall'immagine se erano rimasti */
+.media-item-content {
+  border: none;
+}
