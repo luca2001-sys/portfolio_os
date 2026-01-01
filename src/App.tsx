@@ -17,7 +17,6 @@ import Video from "yet-another-react-lightbox/plugins/video";
 import Counter from "yet-another-react-lightbox/plugins/counter";
 import "yet-another-react-lightbox/plugins/counter.css";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import { Difference } from "@mui/icons-material";
 
 // --- CONFIGURAZIONE PROGETTI ---
 const PROJECTS_LIST = [
@@ -113,7 +112,7 @@ function App() {
   const renderProjectContent = (id: string) => {
     switch (id) {
       
-        case "1":
+        case "1": {
         // Recupero i media del progetto 1
         const p1 = PROJECTS_DATA["1"];
 
@@ -272,8 +271,9 @@ function App() {
             />
           </>
         );
+      }
 
-        case "2":
+        case "2": {
         // Recupero le immagini del progetto 2
         const p2 = PROJECTS_DATA["2"];
 
@@ -394,8 +394,9 @@ function App() {
             />
           </>
         );
+      }
 
-        case "3":
+        case "3": {
         // Recupero l'array delle immagini per questo progetto
         const p3 = PROJECTS_DATA["3"]; 
 
@@ -480,8 +481,9 @@ function App() {
             />
           </>
         );
+      }
 
-        case "4":
+        case "4": {
         // Recupero i media del progetto 4
         const p4 = PROJECTS_DATA["4"];
 
@@ -589,8 +591,9 @@ function App() {
             />
           </>
         );
+      }
 
-        case "5":
+        case "5": {
         // Recupero i media del progetto 5
         const p5 = PROJECTS_DATA["5"];
 
@@ -705,8 +708,9 @@ function App() {
             />
           </>
         );
+      }
 
-        case "6":
+        case "6": {
         // Recupero i media del progetto 6
         const p6 = PROJECTS_DATA["6"];
 
@@ -824,8 +828,9 @@ function App() {
             />
           </>
         );
+      }
 
-        case "7":
+        case "7": {
         // Recupero i media del progetto 7
         const p7 = PROJECTS_DATA["7"];
 
@@ -969,6 +974,7 @@ function App() {
             />
           </>
         );
+      }
 
       default:
         return <div>Progetto non trovato</div>;
@@ -1035,7 +1041,6 @@ function App() {
         isOpen={!!selectedId}
         onClose={() => setSelectedId(null)}
         title={activeProject?.title || ""}
-        year={activeProject?.year || ""}
         backgroundColor={activeProject?.bgColor} 
       >
         {selectedId && renderProjectContent(selectedId)}
@@ -1177,7 +1182,9 @@ function App() {
         open={lightboxOpen}
         close={() => setLightboxOpen(false)}
         index={lightboxIndex}
-        slides={lightboxSlides}
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        slides={lightboxSlides as any}
 
         plugins={[Video, Counter, Zoom]}
 

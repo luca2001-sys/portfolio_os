@@ -8,7 +8,6 @@ interface UniversalModalProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  year: string;
   backgroundColor?: string;
   children: React.ReactNode;
 }
@@ -17,7 +16,7 @@ const UniversalModal: React.FC<UniversalModalProps> = ({
   isOpen,
   onClose,
   title,
-  year,
+  
   backgroundColor,
   children
 }) => {

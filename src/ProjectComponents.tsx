@@ -18,8 +18,8 @@ export const IntroBlock = ({
   isOverlay,
   customYearStyle // <--- NUOVA PROP per la bandiera
 }: { 
-  year: React.ReactNode, // <--- CAMBIATO da string a ReactNode (per accettare <i>, <span>, ecc.)
-  text: React.ReactNode, // <--- CAMBIATO da string a ReactNode (per accettare <u>, <br>, ecc.)
+  year?: React.ReactNode, // <--- CAMBIATO da string a ReactNode (per accettare <i>, <span>, ecc.)
+  text?: React.ReactNode, // <--- CAMBIATO da string a ReactNode (per accettare <u>, <br>, ecc.)
   link?: string, 
   isOverlay?: boolean,
   customYearStyle?: React.CSSProperties // <--- Tipo per lo stile custom
@@ -83,7 +83,7 @@ export const IntroBlock = ({
 );
 
 // 2. SOTTOTITOLO + DESCRIZIONE
-export const TextBlock = ({ title, text }: { title?: string, text: string }) => (
+export const TextBlock = ({ title, text }: { title?: string, text?: string }) => (
   <Box sx={{ marginBottom: '10px' }}>
     {title && (
       <Box sx={{ marginBottom: '5px' }}>
@@ -190,7 +190,7 @@ export const ImageRow = ({
   scale1, scale2   // Zoom (es. 1.1, 1.3)
 }: { 
   h?: 'std' | 'tall' | string, 
-  layout?: '100' | '50-50' | '33-66' | '66-33', 
+  layout?: '100' | '50-50' | '33-66' | '66-33' | string,
   src: string[],
   indices?: number[],
   onMediaClick?: (index: number) => void,
