@@ -174,6 +174,8 @@ const MediaItem = ({
         className="media-item-content"
         style={mediaStyle}
         alt="project detail"
+        loading="lazy"
+        decoding="async"
       />
     </div>
   );

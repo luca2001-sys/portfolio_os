@@ -1169,10 +1169,7 @@ function App() {
                  </>
                }
                isOverlay={true}
-             />
-
-              
-
+             />     
            </>
         )}
       </InfoOverlay>
