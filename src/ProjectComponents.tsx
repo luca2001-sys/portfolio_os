@@ -111,35 +111,44 @@ export const Spacer = ({ size = 10 }: { size?: number }) => <Box sx={{ height: s
 //////// --- AGGIUNTA: Helper per capire se è un video ---
 const isVideo = (src: string) => src?.toLowerCase().endsWith('.mp4');
 
-// --- COMPONENTE MEDIA ITEM (Versione Aggiornata con Bordo Hover) ---
+// --- HELPER PER IL PATH (Nuovo) ---
+// Trasforma "/percorso/01.jpg" in "/percorso/01_sm.jpg"
+const getThumbnailPath = (src: string) => {
+  return src.replace(/(\.[\w\d_-]+)$/i, '_sm$1');
+};
+
+// --- COMPONENTE MEDIA ITEM (Aggiornato) ---
 const MediaItem = ({ 
   src, 
   width, 
   height, 
   onClick, 
   objectPosition,
-  scale = 1 
+  scale = 1,
+  useThumbnail = false // <--- NUOVA PROP: Attiva la modalità "Miniatura"
 }: { 
   src: string, 
   width: string, 
   height: string, 
   onClick?: () => void, 
   objectPosition?: string,
-  scale?: number 
+  scale?: number,
+  useThumbnail?: boolean 
 }) => {
   if (!src) return null;
 
-  // 1. Stile del CONTENITORE
+  // Se la modalità miniatura è attiva, calcoliamo il nuovo percorso
+  // Altrimenti usiamo l'originale
+  const displaySrc = useThumbnail ? getThumbnailPath(src) : src;
+
   const containerStyle = {
     width: width,
     height: height,
     overflow: 'hidden', 
     position: 'relative' as const,
     display: 'block',
-    // Rimuoviamo il cursor da qui, lo gestiamo via CSS/classe per pulizia
   };
 
-  // 2. Stile dell'IMMAGINE/VIDEO
   const mediaStyle = { 
     width: '100%', 
     height: '100%', 
@@ -149,15 +158,13 @@ const MediaItem = ({
     display: 'block'
   };
 
-  // Classe per gestire il cursore se è cliccabile
   const containerClass = onClick ? "media-item-container clickable" : "media-item-container";
 
   if (isVideo(src)) {
     return (
       <div style={containerStyle} onClick={onClick} className={containerClass}>
         <video
-          src={src}
-          // Aggiunta classe per il bordo
+          src={displaySrc} // <--- Usa il path (eventualmente _sm)
           className="media-item-content"
           style={mediaStyle}
           autoPlay muted loop playsInline
@@ -169,8 +176,7 @@ const MediaItem = ({
   return (
     <div style={containerStyle} onClick={onClick} className={containerClass}>
       <img 
-        src={src} 
-        // Aggiunta classe per il bordo
+        src={displaySrc} // <--- Usa il path (eventualmente _sm)
         className="media-item-content"
         style={mediaStyle}
         alt="project detail"
@@ -181,23 +187,25 @@ const MediaItem = ({
   );
 };
 
-// 4. GRIGLIA IMMAGINI (Versione Aggiornata con Scale)
+// --- COMPONENTE IMAGE ROW (Aggiornato) ---
 export const ImageRow = ({ 
   h = 'std', 
   layout = '100', 
   src,
   indices, 
   onMediaClick,
-  pos1, pos2,      // Posizione (left/right/center)
-  scale1, scale2   // Zoom (es. 1.1, 1.3)
+  pos1, pos2,
+  scale1, scale2,
+  useThumbnail = false // <--- NUOVA PROP: Da passare ai figli
 }: { 
   h?: 'std' | 'tall' | string, 
-  layout?: '100' | '50-50' | '33-66' | '66-33' | string,
+  layout?: '100' | '50-50' | '33-66' | '66-33' | string, 
   src: string[],
   indices?: number[],
   onMediaClick?: (index: number) => void,
   pos1?: string, pos2?: string,
-  scale1?: number, scale2?: number // Nuove props opzionali
+  scale1?: number, scale2?: number,
+  useThumbnail?: boolean 
 }) => {
   
   let height = h; 
@@ -211,17 +219,16 @@ export const ImageRow = ({
 
   return (
     <Box sx={{ display: 'flex', width: '100%', gap: GAP, marginBottom: GAP }}>
-      {/* Elemento Sinistro */}
       <MediaItem 
         src={src[0]} 
         width={w1} 
         height={height} 
         onClick={indices && onMediaClick ? () => onMediaClick(indices[0]) : undefined}
         objectPosition={pos1}
-        scale={scale1} // Passiamo lo zoom 1
+        scale={scale1}
+        useThumbnail={useThumbnail} // <--- Passiamo l'ordine
       />
       
-      {/* Elemento Destro */}
       {layout !== '100' && src[1] && (
         <MediaItem 
           src={src[1]} 
@@ -229,7 +236,8 @@ export const ImageRow = ({
           height={height}
           onClick={indices && indices[1] && onMediaClick ? () => onMediaClick(indices[1]) : undefined}
           objectPosition={pos2}
-          scale={scale2} // Passiamo lo zoom 2
+          scale={scale2}
+          useThumbnail={useThumbnail} // <--- Passiamo l'ordine
         />
       )}
     </Box>

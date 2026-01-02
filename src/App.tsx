@@ -133,6 +133,7 @@ function App() {
               src={[ p1[0].src, p1[1].src ]} 
               indices={[0, 1]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
             
             <Spacer size={5} />
@@ -149,6 +150,7 @@ function App() {
               src={[ p1[2].src, p1[3].src ]} 
               indices={[2, 3]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
             
             <Spacer size={5} />
@@ -166,6 +168,7 @@ function App() {
               src={[ p1[6].src, p1[7].src ]} 
               indices={[6, 7]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -183,6 +186,7 @@ function App() {
               src={[ p1[9].src, p1[10].src ]} 
               indices={[9, 10]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -200,6 +204,7 @@ function App() {
               src={[ p1[13].src, p1[14].src ]} 
               indices={[13, 14]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} /> 
@@ -216,6 +221,7 @@ function App() {
               src={[ p1[17].src ]} 
               indices={[17]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <ImageRow 
@@ -224,6 +230,7 @@ function App() {
               src={[ p1[20].src ]} 
               indices={[20]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
             
             <ImageRow 
@@ -232,6 +239,7 @@ function App() {
               src={[ p1[21].src ]} 
               indices={[21]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} /> 
@@ -247,6 +255,7 @@ function App() {
               src={[ p1[22].src ]} 
               indices={[22]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
             
             <IntroBlock 
@@ -296,6 +305,8 @@ function App() {
               src={[ p2[0].src, p2[2].src ]} 
               indices={[0, 2]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
+
             />
 
             <Spacer size={5} />
@@ -312,6 +323,8 @@ function App() {
               src={[ p2[3].src, p2[4].src ]} 
               indices={[3, 4]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
+
             />
             <ImageRow 
               h="tall" 
@@ -319,6 +332,7 @@ function App() {
               src={[ p2[5].src ]} 
               indices={[5]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -335,6 +349,7 @@ function App() {
               src={[ p2[7].src, p2[8].src ]} 
               indices={[7, 8]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
              <ImageRow 
               h="std" 
@@ -342,6 +357,7 @@ function App() {
               src={[ p2[9].src ]} 
               indices={[9]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -356,6 +372,7 @@ function App() {
               src={[ p2[10].src ]} 
               indices={[10]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -370,6 +387,7 @@ function App() {
               src={[ p2[11].src, p2[12].src ]} 
               indices={[11, 12]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
             <ImageRow 
               h="tall" 
@@ -377,6 +395,7 @@ function App() {
               src={[ p2[14].src ]} // Ricorda: è la foto 15.jpg (Index 14)
               indices={[14]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={10} />
@@ -418,13 +437,15 @@ function App() {
               h="std" layout="50-50" 
               src={[ p3[0].src, p3[1].src ]} 
               indices={[0, 1]} // <-- NUOVO: Diciamo che sono la foto 0 e 1
-              onMediaClick={openLightbox} // <-- NUOVO: Passiamo la funzione
+              onMediaClick={openLightbox}
+              useThumbnail={true}
             />
             <ImageRow 
               h="std" layout="50-50" 
               src={[ p3[2].src, p3[3].src ]} 
               indices={[2, 3]} // <-- e così via...
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -437,12 +458,14 @@ function App() {
               src={[ p3[4].src, p3[5].src ]} 
               indices={[4, 5]}
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
              <ImageRow 
               h="std" layout="50-50" 
               src={[ p3[6].src, p3[7].src ]} 
               indices={[6, 7]}
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -456,12 +479,14 @@ function App() {
               src={[ p3[10].src, p3[11].src ]} 
               indices={[10, 11]}
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
             <ImageRow 
               h="tall" layout="100" 
               src={[ p3[12].src ]} 
               indices={[12]}
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={10} />
@@ -516,6 +541,7 @@ function App() {
               src={[ p4[0].src ]} 
               indices={[0]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -532,6 +558,7 @@ function App() {
               src={[ p4[1].src, p4[2].src ]} 
               indices={[1, 2]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -548,6 +575,7 @@ function App() {
               src={[ p4[3].src ]} 
               indices={[3]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -562,6 +590,7 @@ function App() {
               src={[ p4[4].src ]} 
               indices={[4]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <ImageRow 
@@ -570,6 +599,7 @@ function App() {
               src={[ p4[5].src ]} 
               indices={[5]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
             
             {/* Nota: I video 05 e 06 (Index 4 e 5) non sono nella pagina, 
@@ -620,6 +650,7 @@ function App() {
               src={[ p5[0].src ]} 
               indices={[0]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -636,6 +667,7 @@ function App() {
               src={[ p5[1].src ]} 
               indices={[1]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -652,6 +684,7 @@ function App() {
               src={[ p5[2].src ]} 
               indices={[2]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
 
@@ -664,6 +697,7 @@ function App() {
               src={[ p5[3].src ]} 
               indices={[3]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <ImageRow 
@@ -672,6 +706,7 @@ function App() {
               src={[ p5[4].src ]}
               indices={[4]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
               scale1={1.2}
             />
 
@@ -684,6 +719,7 @@ function App() {
               src={[ p5[5].src ]} 
               indices={[5]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
               scale1={1.3}
             />
 
@@ -694,6 +730,7 @@ function App() {
               src={[ p5[6].src ]} 
               indices={[6]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={10} />
@@ -731,6 +768,7 @@ function App() {
               src={[ p6[0].src, p6[1].src ]} 
               indices={[0, 1]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -748,6 +786,7 @@ function App() {
               src={[ p6[2].src, p6[3].src ]} 
               indices={[2, 3]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -765,6 +804,7 @@ function App() {
               src={[ p6[4].src]} 
               indices={[4]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -778,6 +818,7 @@ function App() {
               src={[ p6[5].src ]} 
               indices={[5]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             {/* 8. ALTRE FOTO (Img 07, 08) */}
@@ -787,6 +828,7 @@ function App() {
               src={[ p6[6].src ]} 
               indices={[6]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <ImageRow 
@@ -795,6 +837,7 @@ function App() {
               src={[ p6[7].src ]} 
               indices={[7]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -812,6 +855,7 @@ function App() {
               src={[ p6[8].src ]} 
               indices={[8]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={10} />
@@ -858,6 +902,7 @@ function App() {
               src={[ p7[0].src ]} 
               indices={[0]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -875,6 +920,7 @@ function App() {
               src={[ p7[1].src ]} 
               indices={[1]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             {/* Foto 03 (Tall 100) - Character (MODIFICATO: era 50-50) */}
@@ -884,6 +930,7 @@ function App() {
               src={[ p7[2].src ]} 
               indices={[2]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -901,6 +948,7 @@ function App() {
               src={[ p7[3].src ]} 
               indices={[3]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
             {/* Foto 05 */}
             <ImageRow 
@@ -909,6 +957,7 @@ function App() {
               src={[ p7[4].src ]} 
               indices={[4]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
             {/* Foto 06 */}
             <ImageRow 
@@ -917,6 +966,7 @@ function App() {
               src={[ p7[5].src ]} 
               indices={[5]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={5} />
@@ -934,6 +984,7 @@ function App() {
               src={[ p7[6].src, p7[7].src ]} 
               indices={[6, 7]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
             {/* Riga 2: Foto 09 + Video 10 */}
             <ImageRow 
@@ -942,6 +993,7 @@ function App() {
               src={[ p7[8].src, p7[9].src ]} 
               indices={[8, 9]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
             {/* Riga 3: Video 11 + Foto 12 */}
             <ImageRow 
@@ -950,6 +1002,7 @@ function App() {
               src={[ p7[10].src, p7[11].src ]} 
               indices={[10, 11]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
             {/* Riga 4: Foto 13 + Video 14 */}
             <ImageRow 
@@ -958,6 +1011,7 @@ function App() {
               src={[ p7[12].src, p7[13].src ]} 
               indices={[12, 13]} 
               onMediaClick={openLightbox}
+              useThumbnail={true}
             />
 
             <Spacer size={10} />
