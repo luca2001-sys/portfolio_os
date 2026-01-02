@@ -105,24 +105,40 @@ const UniversalModal: React.FC<UniversalModalProps> = ({
                 zIndex: 10
               }}
             >
+              
               {/* HEADER - TITOLO */}
               <Box sx={{ 
-                  display: 'inline-flex',    // Usa flex per centrare il testo verticalmente
-                  alignItems: 'center',      // Centra verticalmente
-                  height: '25px',            // <--- ALTEZZA FISSA
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  height: '25px', 
                   backgroundColor: '#000000',
                   color: '#ffffff',
-                  padding: '0px 5px',       // Padding solo orizzontale
-                  marginLeft: '150px',
+                  padding: '0px 10px', // Aumentato leggermente per estetica
                   
-                  // Bordo opzionale per uniformità con il resto
-                  border: '1px solid #000000' 
+                  // --- FIX RESPONSIVE ---
+                  // Su mobile (xs) margine piccolo, su Desktop (md) margine grande
+                  marginLeft: { xs: '10px', md: '150px' }, 
+                  
+                  // Limita la larghezza massima per non andare sopra il tasto X
+                  maxWidth: { xs: 'calc(100% - 70px)', md: '60%' }, 
+                  
+                  border: '1px solid #000000',
+                  
+                  // Gestione overflow per mantenere l'altezza fissa
+                  overflow: 'hidden' 
                 }}>
                 <span style={{ 
                   fontFamily: 'AlteHaas',
                   fontSize: '15px', 
                   fontWeight: 700,
-                  lineHeight: 1 
+                  lineHeight: '25px', // Allinea il testo verticalmente all'altezza del box
+                  
+                  // --- FIX TESTO ---
+                  whiteSpace: 'nowrap',      // Impedisce di andare a capo
+                  overflow: 'hidden',        // Nasconde l'eccesso
+                  textOverflow: 'ellipsis',  // Aggiunge i tre puntini (...)
+                  display: 'block',          // Necessario per far funzionare l'ellipsis
+                  width: '100%'
                 }}>
                   {title}
                 </span>

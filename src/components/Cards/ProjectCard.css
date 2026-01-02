@@ -98,3 +98,27 @@
 .media-item-content {
   border: none;
 }
+
+/* ______________________________________________________________________________________ */
+/* ______________________________________________________________________________________ */
+/* ______________________________________________________________________________________ */
+
+
+/* --- OTTIMIZZAZIONE MOBILE --- */
+/* Si attiva su Tablet verticali e Smartphone */
+@media (max-width: 768px) {
+  
+  .card-container {
+    /* Riduciamo drasticamente la larghezza */
+    /* Da 150px passiamo a 100px (o anche 90px se le vuoi minuscole) */
+    width: 100px; 
+  }
+
+  .card-label {
+    /* Riduciamo il font per mantenere le proporzioni */
+    font-size: 0.8rem; 
+    
+    /* Riduciamo leggermente il padding */
+    padding: 1px 3px;
+  }
+}

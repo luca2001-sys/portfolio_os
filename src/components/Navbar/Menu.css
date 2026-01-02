@@ -9,6 +9,9 @@
   gap: 2rem;
   z-index: 100;
   pointer-events: none;
+  
+  /* Assicura che i bottoni siano centrati se cambia l'orientamento */
+  align-items: center; 
 }
 
 .brutalist-btn {
@@ -17,7 +20,6 @@
   background: none;
   outline: none;
 
-  /* --- MODIFICA QUI: Aggiungiamo il bordo base --- */
   /* Bordo nero su sfondo nero (invisibile ma occupa spazio) */
   border: 1px solid #000000; 
 
@@ -25,7 +27,7 @@
   background-color: #000000;
   color: #ffffff;
   
-  /* Tipografia (Se hai cambiato font metti 'Geist Mono' qui) */
+  /* Tipografia */
   font-family: 'AlteHaas', sans-serif; 
   font-weight: 700;
   font-size: 1.5rem;
@@ -33,9 +35,7 @@
   text-transform: uppercase;
   
   line-height: 1;
-  /* Riduco leggermente il padding per compensare il bordo se serve, 
-     ma 0.5px è già minimo. */
-  padding: 1px 2px; /* Un po' di respiro rende il box più bello */
+  padding: 1px 2px;
   display: inline-block;
   
   cursor: pointer;
@@ -53,4 +53,18 @@
   background-color: #ffd0ed;
   color: #000000;
   border: 1px solid #000000;
+}
+
+/* --- MODIFICA MOBILE (Smartphone) --- */
+@media (max-width: 768px) {
+  .navbar-container {
+    /* Impila i bottoni verticalmente */
+    flex-direction: column;
+    
+    /* Riduce lo spazio tra i due bottoni (verticale serve meno spazio) */
+    gap: 10px; 
+    
+    /* Opzionale: Se vuoi alzare un po' il menu su mobile perché lo schermo è piccolo */
+    /* top: 30px; */ 
+  }
 }

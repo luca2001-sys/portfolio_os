@@ -67,3 +67,24 @@
   transition: opacity 0.1s ease; /* Transizione morbida quando appare/spare */
   will-change: transform; /* Ottimizza le prestazioni per evitare lag */
 }
+
+/* _______________________________________________________________________________________  */
+/* _______________________________________________________________________________________  */
+/* _______________________________________________________________________________________  */
+
+/* --- OTTIMIZZAZIONE MOBILE: NO CURSORE CUSTOM --- */
+
+/* Se lo schermo è più piccolo di 1024px (Tablet/Mobile) 
+   OPPURE se il dispositivo non ha un mouse preciso (Touch) */
+@media (max-width: 1024px), (hover: none) {
+  
+  /* 1. Nascondi la X personalizzata */
+  .custom-cursor-x {
+    display: none !important;
+  }
+
+  /* 2. Ripristina il comportamento normale sullo sfondo */
+  .overlay-backdrop {
+    cursor: auto !important; 
+  }
+}

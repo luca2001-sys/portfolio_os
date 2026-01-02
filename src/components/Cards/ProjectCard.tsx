@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion'; // Reimportiamo la libreria
+import React, { useRef } from 'react';
+import { motion } from 'framer-motion'; 
 import './ProjectCard.css';
 
 interface ProjectCardProps {
@@ -17,37 +17,55 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   top, 
   left 
 }) => {
+  
+  // 1. Il nostro semaforo
+  const isDraggingRef = useRef(false);
+
   return (
     <motion.div 
       className="card-container"
-      
-      // 1. Posizionamento Iniziale
-      // Usiamo 'style' così framer motion rispetta le tue coordinate top/left
       style={{ top: top, left: left }}
       
-      // 2. Abilita il trascinamento
       drag
-      
-      // 3. Rimuove l'inerzia (effetto ghiaccio) per un feeling più "Desktop OS"
       dragMomentum={false}
       
-      // 4. Stati interattivi
       whileHover={{ scale: 1.05, zIndex: 100 }}
       whileDrag={{ scale: 1.15, zIndex: 1000, cursor: 'grabbing' }}
-      
-      // 5. Click
-      onClick={() => console.log('Open project:', id)}
+
+      // 2. RESETTA IL SEMAFORO SOLO QUANDO TOCCHI DI NUOVO
+      // Usiamo Capture per essere sicuri di prenderlo prima di tutti
+      onPointerDownCapture={() => {
+        isDraggingRef.current = false;
+      }}
+
+      // 3. SE INIZI A MUOVERE, ALZA IL SEMAFORO
+      onDragStart={() => {
+        isDraggingRef.current = true;
+      }}
+
+      // 4. AL CLICK (RILASCIO), CONTROLLA IL SEMAFORO
+      // Nota: Non usiamo onDragEnd per resettare.
+      onClick={(e) => {
+        // Se stavo trascinando, isDraggingRef è ancora TRUE.
+        if (isDraggingRef.current) {
+          e.stopPropagation(); // Ferma la propagazione
+          console.log('Click ignorato dopo il drag');
+          return; 
+        }
+        
+        // Se arrivo qui, onDragStart non è mai partito -> È un click vero
+        console.log('APRI PROGETTO:', id);
+        // onOpen(id);
+      }}
     >
-      {/* Immagine */}
       <div className="card-image-wrapper">
         <img 
           src={coverImage} 
           alt={title} 
-          draggable="false" // IMPORTANTE: evita che il browser trascini l'immagine invece del div
+          draggable="false" 
         />
       </div>
 
-      {/* Etichetta */}
       <div className="card-label">
         {title}
       </div>

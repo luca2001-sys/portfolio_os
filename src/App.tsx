@@ -542,6 +542,7 @@ function App() {
               indices={[0]} 
               onMediaClick={openLightbox}
               useThumbnail={true}
+              scale1={1.05}
             />
 
             <Spacer size={5} />
@@ -813,7 +814,7 @@ function App() {
             <TextBlock title="Posters" />
 
             <ImageRow 
-              h="700px" 
+              h="35vw" 
               layout="100" 
               src={[ p6[5].src ]} 
               indices={[5]} 
@@ -823,7 +824,7 @@ function App() {
 
             {/* 8. ALTRE FOTO (Img 07, 08) */}
             <ImageRow 
-              h="415px" 
+              h="25vw" 
               layout="100" 
               src={[ p6[6].src ]} 
               indices={[6]} 
@@ -832,7 +833,7 @@ function App() {
             />
 
             <ImageRow 
-              h="415px" 
+              h="25vw" 
               layout="100" 
               src={[ p6[7].src ]} 
               indices={[7]} 
@@ -898,7 +899,7 @@ function App() {
             {/* 2. HERO: Foto 01 (Tall 100) */}
             <ImageRow 
               h="tall" 
-              layout="415px" 
+              layout="100" 
               src={[ p7[0].src ]} 
               indices={[0]} 
               onMediaClick={openLightbox}
@@ -1242,23 +1243,14 @@ function App() {
         className="portfolio-lightbox"
 
         styles={{
-          // 1. Sfondo Bianco
           container: { backgroundColor: "#fffffff5" },
-          
-          // 2. Icone Nere
+
           root: { 
             "--yarl__color_button": "#000000", 
             "--yarl__color_backdrop": "#ffffff",
           },
 
-          // 3. IL TRUCCO (Padding):
-          // Diciamo alla slide di avere un margine interno enorme.
-          // L'immagine/video sarà costretta a rimpicciolirsi per starci dentro.
-          slide: { 
-            padding: "12vw", // Valore fisso sicuro
-            // Oppure prova in percentuale se vuoi che si adatti:
-            // padding: "10vh 10vw" 
-          }
+          slide: { padding: "12vw" }
         }}
       />
     </>

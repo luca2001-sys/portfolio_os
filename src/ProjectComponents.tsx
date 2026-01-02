@@ -1,11 +1,16 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 
-// --- MISURE FISSE ---
-const INDENT = '140px'; 
-const GAP = '10px';
-const H_STD = '202.5px';
-const H_TALL = '360px';
+// --- RILEVAMENTO DEVICE ---
+// Definisci il tuo breakpoint (es. 768px per tablet/mobile)
+// Il controllo 'typeof window' serve per evitare crash se usi Next.js o SSR
+const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+// --- MISURE FISSE (ADATTIVE) ---
+const INDENT = isMobile ? '55px' : '140px'; 
+const GAP    = isMobile ? '5px'  : '10px';
+const H_STD  = isMobile ? '150px': '202.5px'; // Esempio di altezza ridotta
+const H_TALL = isMobile ? '280px': '360px';   // Esempio di altezza ridotta
 
 // 1. BLOCCO INTRO
 // Assicurati che INDENT sia definito da qualche parte sopra, es:
@@ -128,8 +133,10 @@ const MediaItem = ({
   useThumbnail = false // <--- NUOVA PROP: Attiva la modalità "Miniatura"
 }: { 
   src: string, 
-  width: string, 
-  height: string, 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  width: string| any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  height: string| any,
   onClick?: () => void, 
   objectPosition?: string,
   scale?: number,
@@ -187,7 +194,7 @@ const MediaItem = ({
   );
 };
 
-// --- COMPONENTE IMAGE ROW (Aggiornato) ---
+// --- COMPONENTE IMAGE ROW (Responsive Mobile Stack) ---
 export const ImageRow = ({ 
   h = 'std', 
   layout = '100', 
@@ -196,7 +203,7 @@ export const ImageRow = ({
   onMediaClick,
   pos1, pos2,
   scale1, scale2,
-  useThumbnail = false // <--- NUOVA PROP: Da passare ai figli
+  useThumbnail = false 
 }: { 
   h?: 'std' | 'tall' | string, 
   layout?: '100' | '50-50' | '33-66' | '66-33' | string, 
@@ -208,17 +215,41 @@ export const ImageRow = ({
   useThumbnail?: boolean 
 }) => {
   
+  // --- 1. GESTIONE ALTEZZA ---
   let height = h; 
   if (h === 'std') height = H_STD;
   else if (h === 'tall') height = H_TALL;
   
-  let w1 = '100%', w2 = '0%';
-  if (layout === '50-50') { w1 = `calc(50% - 5px)`; w2 = `calc(50% - 5px)`; }
-  if (layout === '33-66') { w1 = `calc(33.3% - 5px)`; w2 = `calc(66.6% - 5px)`; }
-  if (layout === '66-33') { w1 = `calc(66.6% - 5px)`; w2 = `calc(33.3% - 5px)`; }
+  // --- 2. CALCOLO LARGHEZZE DESKTOP ---
+  // Calcoliamo prima quanto devono essere grandi SOLO su desktop
+  let desktopW1 = '100%';
+  let desktopW2 = '0%';
+
+  if (layout === '50-50') { desktopW1 = `calc(50% - ${GAP}/2)`; desktopW2 = `calc(50% - ${GAP}/2)`; }
+  if (layout === '33-66') { desktopW1 = `calc(33.3% - ${GAP}/2)`; desktopW2 = `calc(66.6% - ${GAP}/2)`; }
+  if (layout === '66-33') { desktopW1 = `calc(66.6% - ${GAP}/2)`; desktopW2 = `calc(33.3% - ${GAP}/2)`; }
+
+  // --- 3. CREAZIONE LARGHEZZE RESPONSIVE ---
+  // Se il layout è 100, è sempre 100%. 
+  // Altrimenti: Mobile = 100%, Desktop = valore calcolato sopra.
+  
+  const w1 = layout === '100' 
+    ? '100%' 
+    : { xs: '100%', md: desktopW1 };
+
+  const w2 = layout === '100'
+    ? '0%'
+    : { xs: '100%', md: desktopW2 };
 
   return (
-    <Box sx={{ display: 'flex', width: '100%', gap: GAP, marginBottom: GAP }}>
+    <Box sx={{ 
+      display: 'flex', 
+      width: '100%', 
+      gap: GAP, 
+      marginBottom: GAP,
+      // QUI LA MAGIA: Colonna su mobile, Riga su desktop
+      flexDirection: { xs: 'column', md: 'row' } 
+    }}>
       <MediaItem 
         src={src[0]} 
         width={w1} 
@@ -226,7 +257,7 @@ export const ImageRow = ({
         onClick={indices && onMediaClick ? () => onMediaClick(indices[0]) : undefined}
         objectPosition={pos1}
         scale={scale1}
-        useThumbnail={useThumbnail} // <--- Passiamo l'ordine
+        useThumbnail={useThumbnail}
       />
       
       {layout !== '100' && src[1] && (
@@ -237,7 +268,7 @@ export const ImageRow = ({
           onClick={indices && indices[1] && onMediaClick ? () => onMediaClick(indices[1]) : undefined}
           objectPosition={pos2}
           scale={scale2}
-          useThumbnail={useThumbnail} // <--- Passiamo l'ordine
+          useThumbnail={useThumbnail}
         />
       )}
     </Box>
