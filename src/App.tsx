@@ -1065,11 +1065,26 @@ function App() {
     return { src: item.src };
   }) || [];
 
+  // Definisci il breakpoint (puoi usare containerSize.width o window.innerWidth)
+  const isMobile = containerSize.width < 768; 
+
   const cardsWithPosition = useMemo(() => {
     if (containerSize.width === 0) return [];
-    const positions = getKCenterPositions(PROJECTS_LIST.length, containerSize.width, containerSize.height);
-    return PROJECTS_LIST.map((p, i) => ({ ...p, top: positions[i]?.top || "50%", left: positions[i]?.left || "50%" }));
-  }, [containerSize]);
+
+    const positions = getKCenterPositions(
+      PROJECTS_LIST.length, 
+      containerSize.width, 
+      containerSize.height,
+      isMobile
+    );
+
+    return PROJECTS_LIST.map((p, i) => ({ 
+      ...p, 
+      top: positions[i]?.top || "50%", 
+      left: positions[i]?.left || "50%" 
+    }));
+
+  }, [containerSize, isMobile]);
 
   return (
     <>

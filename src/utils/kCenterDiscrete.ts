@@ -12,45 +12,42 @@ export const getKCenterPositions = (
   itemsCount: number,
   containerWidth: number,
   containerHeight: number,
+  isMobile: boolean, // <--- 1. NUOVO PARAMETRO FONDAMENTALE
   candidatePoolSize: number = 1000
 ): { top: string; left: string }[] => {
-  // Se il contenitore non ha dimensioni valide, ritorna array vuoto
+  
   if (containerWidth === 0 || containerHeight === 0) return [];
 
-  // --- CONFIGURAZIONE INGOMBRI (Conservative Bounding Box) ---
-  // Queste costanti definiscono quanto spazio "immaginario" occupa una card
-  // per essere sicuri che non esca mai dai bordi.
-  // 240px copre larghezza card (220) + margine
-  const SAFE_CARD_WIDTH = 260;
-  // 350px copre altezza card (variabile) + titolo sotto + margine
-  const SAFE_CARD_HEIGHT = 250;
+  // --- CONFIGURAZIONE DINAMICA ---
+  
+  // SAFE_CARD_WIDTH:
+  const SAFE_CARD_WIDTH = isMobile ? 80 : 260; 
 
-  // Altezza Navbar + un po' di aria (es. 80px)
-  const NAVBAR_HEIGHT = 150;
+  const SAFE_CARD_HEIGHT = isMobile ? 100 : 250;
 
-  // --- MARGINI LATERALI (Centratura) ---
-  // Forziamo le card a stare in una zona centrale (evitiamo il 5% ai lati estremi)
-  const xPadding = Math.max(20, containerWidth * 0.05);
+  const NAVBAR_HEIGHT = isMobile ? 125 : 150;
+
+  // PADDING:
+  // Su mobile usiamo quasi tutto lo schermo (margine minimo).
+  const xPadding = isMobile ? 10 : Math.max(20, containerWidth * 0.05);
   const yPadding = 20;
 
   // --- CALCOLO LIMITI SICURI ---
-  // minX: Margine Sinistro
   const minX = Math.floor(xPadding);
-  // maxX: Larghezza Totale - Larghezza Card Sicura - Margine Destro
-  const maxX = Math.floor(containerWidth - SAFE_CARD_WIDTH - xPadding);
+  
+  // Calcolo maxX:
+  // Se containerWidth è 390 e SAFE è 160 -> maxX = 230.
+  // I punti X saranno tra 10 e 230. 
+  // Una card che inizia a 230 finirà visivamente verso i 390. Perfetto.
+  let maxX = Math.floor(containerWidth - SAFE_CARD_WIDTH - xPadding);
 
-  // minY: Sotto la Navbar
   const minY = Math.floor(NAVBAR_HEIGHT);
-  // maxY: Altezza Totale - Altezza Card Sicura - Margine Basso
-  const maxY = Math.floor(containerHeight - SAFE_CARD_HEIGHT - yPadding);
+  let maxY = Math.floor(containerHeight - SAFE_CARD_HEIGHT - yPadding);
 
-  // --- CONTROLLO DI EMERGENZA (Per schermi piccoli/mobile) ---
-  // Se i calcoli sopra danno numeri negativi (schermo troppo piccolo),
-  // usiamo dei fallback minimi per non rompere l'app.
-  const validMinX = minX < maxX ? minX : 10;
-  const validMaxX = minX < maxX ? maxX : containerWidth - 220; // 220 larghezza minima card
-  const validMinY = minY < maxY ? minY : NAVBAR_HEIGHT;
-  const validMaxY = minY < maxY ? maxY : containerHeight - 200;
+  // --- FIX DI SICUREZZA PER SCHERMI MINUSCOLI ---
+  // Se i calcoli danno risultati assurdi (tipo negativi), forziamo dei minimi.
+  if (maxX <= minX) maxX = containerWidth - 100; // Fallback estremo
+  if (maxY <= minY) maxY = containerHeight - 100;
 
   // --- FASE 1: GENERAZIONE CANDIDATI ---
   const candidates: Point[] = [];
@@ -58,14 +55,13 @@ export const getKCenterPositions = (
   for (let i = 0; i < candidatePoolSize; i++) {
     candidates.push({
       id: i,
-      // Generiamo punti SOLO dentro il rettangolo sicuro calcolato sopra
-      x: Math.floor(Math.random() * (validMaxX - validMinX) + validMinX),
-      y: Math.floor(Math.random() * (validMaxY - validMinY) + validMinY),
+      // Qui ora la X può andare molto più a destra grazie al SAFE_CARD_WIDTH ridotto
+      x: Math.floor(Math.random() * (maxX - minX) + minX),
+      y: Math.floor(Math.random() * (maxY - minY) + minY),
     });
   }
 
-  // --- FASE 2: SELEZIONE (GREEDY K-CENTER) ---
-  // Selezioniamo tra i candidati quelli più distanti tra loro
+  // --- FASE 2: SELEZIONE (GREEDY K-CENTER) - INVARIATA ---
   const selectedPoints: Point[] = [];
 
   // Primo punto random
