@@ -124,4 +124,34 @@ export const PROJECTS_DATA: Record<string, ProjectMedia[]> = {
     { type: 'video', src: '/projects/p7/14.mp4' }, // Index 13 (VIDEO)
   ],
 
+  // === PROGETTO 8: ALIENZ ===
+  "8": [
+    { type: 'image', src: '/projects/p8/01.jpg' }, // Index 0
+    { type: 'video', src: '/projects/p8/02.mp4' }, // Index 1
+    { type: 'video', src: '/projects/p8/03.mp4' }, // Index 2
+    { type: 'image', src: '/projects/p8/04.jpg' }, // Index 3
+    { type: 'image', src: '/projects/p8/05.jpg' }, // Index 4
+    { type: 'video', src: '/projects/p8/06.mp4' }, // Index 5
+    { type: 'video', src: '/projects/p8/07.mp4' }, // Index 6
+    { type: 'image', src: '/projects/p8/08.jpg' }, // Index 7
+    { type: 'image', src: '/projects/p8/09.jpg' }, // Index 8
+    { type: 'video', src: '/projects/p8/10.mp4' }, // Index 9
+    { type: 'video', src: '/projects/p8/11.mp4' }, // Index 10
+    { type: 'image', src: '/projects/p8/12.jpg' }, // Index 11
+    { type: 'image', src: '/projects/p8/13.jpg' }, // Index 12
+    { type: 'image', src: '/projects/p8/14.jpg' }, // Index 13
+    { type: 'image', src: '/projects/p8/15.jpg' }, // Index 14
+    { type: 'image', src: '/projects/p8/16.jpg' }, // Index 15
+    { type: 'image', src: '/projects/p8/17.jpg' }, // Index 16
+    { type: 'image', src: '/projects/p8/18.jpg' }, // Index 17
+    { type: 'image', src: '/projects/p8/19.jpg' }, // Index 18
+    { type: 'image', src: '/projects/p8/20.jpg' }, // Index 19
+    { type: 'image', src: '/projects/p8/21.jpg' }, // Index 20
+    { type: 'image', src: '/projects/p8/22.jpg' }, // Index 21
+    { type: 'image', src: '/projects/p8/23.jpg' }, // Index 22
+    { type: 'image', src: '/projects/p8/24.jpg' }, // Index 23
+    { type: 'image', src: '/projects/p8/25.jpg' }, // Index 24
+    { type: 'image', src: '/projects/p8/26.jpg' }, // Index 25
+  ],
+
 };
