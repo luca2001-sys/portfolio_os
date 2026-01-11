@@ -27,12 +27,20 @@
   width: 100%;
   max-width: 800px;
   padding: 40px;
-  max-height: 90vh;
+  max-height: 100vh;
   overflow-y: auto;
   color: #000000;
   
   position: relative;
   z-index: 2; /* Il testo sta sopra la X */
+}
+
+.overlay-content::before {
+  content: "";       /* Crea un elemento vuoto "finto" */
+  display: block;    /* Lo tratta come un blocco (come un div) */
+  width: 100%;       /* Largo quanto tutto il contenitore */
+  
+  min-height: 15vh;  /* Alto il 25% dello schermo */
 }
 
 .overlay-content::-webkit-scrollbar {
@@ -88,3 +96,4 @@
     cursor: auto !important; 
   }
 }
+
