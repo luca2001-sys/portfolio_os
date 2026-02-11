@@ -88,7 +88,7 @@ export const IntroBlock = ({
 );
 
 // 2. SOTTOTITOLO + DESCRIZIONE
-export const TextBlock = ({ title, text }: { title?: string, text?: string }) => (
+export const TextBlock = ({ title, text }: { title?: string, text?: React.ReactNode }) => (
   <Box sx={{ marginBottom: '10px' }}>
     {title && (
       <Box sx={{ marginBottom: '5px' }}>

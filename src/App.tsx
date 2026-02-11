@@ -76,6 +76,13 @@ const PROJECTS_LIST = [
     cover: "/projects/p8/09.jpg", // AGGIORNATO
     bgColor: "#ffffff"
   },
+  { 
+    id: "9", 
+    title: "VALLECHIARA", 
+    year: "2021", 
+    cover: "/projects/p9/cover.jpg", // AGGIORNATO
+    bgColor: "#ffffff"
+  },
 ];
 
 function App() {
@@ -114,6 +121,91 @@ function App() {
   };
 
   const activeProject = PROJECTS_LIST.find(p => p.id === selectedId);
+
+  // --- COMPONENTE PER VIDEO SINGOLO ---
+  const SingleVideo = ({ id, ratio = "16/9", autoPlay = false }: { id: string, ratio?: string, autoPlay?: boolean }) => {
+    const containerStyle: React.CSSProperties = { 
+      width: '100%', 
+      marginBottom: '10px', 
+      position: 'relative', 
+      backgroundColor: '#000', // Sfondo nero mentre carica
+      aspectRatio: ratio 
+    };
+    
+    const iframeStyle: React.CSSProperties = { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' };
+
+    const getUrl = (id: string, isAuto: boolean) => {
+      let base = `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1`;
+      if (isAuto) base += `&autoplay=1&mute=1&loop=1&playlist=${id}`;
+      return base;
+    };
+
+    return (
+      <div style={containerStyle}>
+        <iframe 
+          style={iframeStyle} 
+          src={getUrl(id, autoPlay)} 
+          frameBorder="0" 
+          allowFullScreen 
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+        />
+      </div>
+    );
+  };
+
+  // --- COMPONENTE PER VIDEO DOPPIO (Versione con Autoplay) ---
+  const DoubleVideo = ({ 
+    leftId, 
+    rightId, 
+    ratio = "16/9",
+    autoPlayLeft = false, 
+    autoPlayRight = false 
+  }: { 
+    leftId: string, 
+    rightId: string, 
+    ratio?: string,
+    autoPlayLeft?: boolean,
+    autoPlayRight?: boolean
+  }) => {
+    
+    const commonStyle: React.CSSProperties = { flex: '1 1 300px', position: 'relative', aspectRatio: ratio };
+    const iframeStyle: React.CSSProperties = { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' };
+    
+    // Funzione intelligente: se è autoplay, aggiunge i comandi per il loop e il muto
+    const getUrl = (id: string, isAuto: boolean) => {
+      let base = `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1`;
+      if (isAuto) {
+        // Aggiunge: Autoplay + Muto (Obbligatorio) + Loop + Playlist (serve per il loop)
+        base += `&autoplay=1&mute=1&loop=1&playlist=${id}`;
+      }
+      return base;
+    };
+
+    return (
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', width: '100%', marginBottom: '10px' }}>
+        {/* Video Sinistra */}
+        <div style={commonStyle}>
+          <iframe 
+            style={iframeStyle} 
+            src={getUrl(leftId, autoPlayLeft)} 
+            frameBorder="0" 
+            allowFullScreen 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+          />
+        </div>
+        {/* Video Destra */}
+        <div style={commonStyle}>
+          <iframe 
+            style={iframeStyle} 
+            src={getUrl(rightId, autoPlayRight)} 
+            frameBorder="0" 
+            allowFullScreen 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+          />
+        </div>
+      </div>
+    );
+  };
 
   // --- CONTENUTI ---
   const renderProjectContent = (id: string) => {
@@ -527,13 +619,7 @@ function App() {
               text={
                 <>
                   The project Save the Keys, born in collaboration with Save the Children, brings young people closer to the brand by allowing them to donate through the purchase of keychains created in partnership with five studios based in Milan.
-                </>
-              } 
-            />
-
-            <IntroBlock  
-              text={
-                <>
+                  <br /><br />
                   This initiative combines creativity and solidarity, offering a personalized product that supports fundamental social causes, encouraging awareness and active participation among young people.
                 </>
               } 
@@ -1066,6 +1152,7 @@ function App() {
               indices={[0, 1]} 
               onMediaClick={openLightbox}
             />
+
             {/* Row 2: Left MP4 (03) - Right JPG (04) */}
             <ImageRow 
               h="tall" 
@@ -1074,6 +1161,43 @@ function App() {
               indices={[2, 3]} 
               onMediaClick={openLightbox}
             />
+
+            {/* --- RIGA DOPPIO VIDEO (Versione Senza Installazioni) --- */}
+            <div 
+              style={{ 
+                display: 'flex', 
+                flexWrap: 'wrap', // Questo fa andare a capo su mobile
+                gap: '10px',      
+                width: '100%',
+                marginBottom: '40px' 
+              }}
+            >
+              
+              {/* VIDEO SINISTRA */}
+              <div style={{ flex: '1 1 300px', position: 'relative', aspectRatio: '1/1' }}>
+                <iframe 
+                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                  src="https://www.youtube.com/embed/oJlnsYRFJxk?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1" 
+                  title="Video Sinistra"
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                />
+              </div>
+
+              {/* VIDEO DESTRA */}
+              <div style={{ flex: '1 1 300px', position: 'relative', aspectRatio: '1/1' }}>
+                <iframe 
+                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                  src="https://www.youtube.com/embed/ftN6vYfa4Tc?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1" 
+                  title="Video Destra"
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                />
+              </div>
+
+            </div>
             
             <Spacer size={5} />
 
@@ -1138,6 +1262,227 @@ function App() {
           </>
         );
       }
+
+        case "9": {
+      // === PROGETTO 9: VALLECHIARA ===
+      // Recupero i media del progetto 9
+      const p9 = PROJECTS_DATA["9"];
+
+      return (
+        <>
+          {/* 1. INTRO BLOCK */}
+          <IntroBlock 
+            year="2025"
+            text={
+              <>
+                A village that does not exist, built entirely on the expectations of its visitors. “Vallechiara: The Illusion of the Authentic” is a critical project analyzing the fracture between territorial reality and media representation.
+                <br /><br />
+                In a context where tourism communication tends to simplify the complexity of places to make them marketable, this project generates a visual paradox: a hyper-realistic place that, precisely in its perfection, reveals the standardized and stereotypical nature of today's territorial narratives.
+              </>
+            }
+            link="https://youtu.be/oJlnsYRFJxk"
+          />
+          
+          <Spacer size={5} />
+
+          {/* 2. SEZIONE CONCEPT */}
+          <TextBlock 
+            title="Concept" 
+            text={
+              <>
+                <p className="mb-4">
+                  To investigate the standardization of tourism narratives, the project defines a speculative model: the Metaborgo. Vallechiara is a fictional yet hyper-realistic place, generated by the visual languages that the market imposes on territories.
+                  <br /><br />
+                  The intervention unfolds as a two-act transmedia strategy:
+                  <br />
+                  ☉ <u>The Deception (Campaign):</u> an integrated communication strategy that launches the destination by leveraging the rhetoric of authenticity.
+                  <br />
+                  ◉ <u>The Revelation (Exhibition):</u> an interactive journey that deconstructs the mechanisms of stereotyping, exposing the media infrastructure that sustains the Tuscan "postcard."
+                </p>
+              </>
+            } 
+          />
+
+          {/* Row 1: Images 01 (Left) - 02 (Right) */}
+          <ImageRow 
+            h="tall" 
+            layout="50-50" 
+            src={[ p9[0].src, p9[1].src ]} 
+            indices={[0, 1]} 
+            onMediaClick={openLightbox}
+            useThumbnail={true}
+          />
+
+          {/* Row 2: Double Video Embed (Shorts) - 1/1 Ratio */}
+          <DoubleVideo 
+            leftId="RirRteKyCJo" 
+            rightId="-7pjONsmWoE" 
+            ratio="1/1" 
+          />
+
+          <Spacer size={5} />
+
+          {/* 3. SEZIONE PROMOTIONAL CAMPAIGN */}
+          <TextBlock 
+            title="Promotional campaign [Illusione]" 
+            text="A two-phase strategy: first the deception, launching Vallechiara as a real destination via branding (billboards, merch, social); then the revelation, exposing the artifice to promote the critical exhibition." 
+          />
+
+          {/* Row 3: Image 04 (Full Width / Tall) */}
+          {/* Nota: p9[2] è il video 03.mp4 (saltato qui), quindi 04.jpg è p9[3] */}
+          <ImageRow 
+            h="tall" 
+            layout="100" 
+            src={[ p9[3].src ]} 
+            indices={[3]} 
+            onMediaClick={openLightbox}
+            useThumbnail={true}
+          />
+
+          <Spacer size={5} />
+
+          {/* 4. SEZIONE ROOM (1) */}
+          <TextBlock 
+            title="Room (1) [Realtà simulata]" 
+            text="A video installation introduces the Metaborgo, revealing Vallechiara not as a physical place but an aesthetic prediction: a visual product built entirely on tourist expectations." 
+          />
+
+          {/* Row 4: Double Video Embed - 1/1 Ratio */}
+          <DoubleVideo 
+            leftId="EDXWWB10pPM" 
+            rightId="BflGqu4zytk"
+            autoPlayLeft={true} 
+            autoPlayRight={false}
+            ratio="1/1" 
+          />
+
+          <Spacer size={5} />
+
+          {/* 5. SEZIONE ROOM (2) */}
+          <TextBlock 
+            title="Room (2) [Identità in serie]" 
+            text="A multi-screen system cyclically regenerates 10 scenarios. The spatial structure remains identical, details change every 15 seconds: a visual demonstration of the standardization and homogenization of tourist villages." 
+          />
+
+          {/* Row 5: Double Video Embed - 1/1 Ratio */}
+          <DoubleVideo 
+            leftId="RlbZkCaeIjw" 
+            rightId="G2tliq8yVVM"
+            autoPlayLeft={false} 
+            autoPlayRight={true} 
+            ratio="1/1" 
+          />
+
+          {/* Single Video Tall*/}
+          <SingleVideo 
+            id="mYOPiVbuARw" 
+            ratio="3840/1080"
+            autoPlay={false}
+          />
+
+          <Spacer size={5} />
+
+          {/* ================= SECTION 5: ROOM (3a) [Dentro l’algoritmo] ================= */}
+          <TextBlock 
+            title="Room (3a) [Dentro l’algoritmo]" 
+            text="Eight screens and exposed cables display the digital &quot;assembly line&quot; behind the romantic image. From data analysis to the final render, the Metaborgo’s technological infrastructure becomes transparent." 
+          />
+
+          {/* Row 5: Double Video Embed - 1/1 Ratio */}
+          <DoubleVideo 
+            leftId="tU5heTrzH4M"    // Autoplay: TRUE
+            rightId="SkQUc_N4vMI"   // Autoplay: FALSE
+            ratio="1/1" 
+            autoPlayLeft={true}
+            autoPlayRight={false}
+          />
+
+          {/* Single Video Tall*/}
+          <SingleVideo 
+            id="GUayb60a4bw" 
+            ratio="3840/1080"
+            autoPlay={false}
+          />
+
+          <Spacer size={5} />
+
+          {/* ================= SECTION 6: ROOM (3b) [Interattiva] ================= */}
+          <TextBlock 
+            title="Room (3b) [Interattiva]" 
+            text="Users explore the 3D model via tablet and generate real-time images. The interface breaks down the &quot;authentic&quot; view into its artificial layers (structure, data, prompt), making the simulation visible." 
+          />
+
+          {/* Row 6: Double Video Embed - 1/1 Ratio */}
+          <DoubleVideo 
+            leftId="9r0BOpra1_E"    // Autoplay: FALSE
+            rightId="LaLfcxtas4w"   // Autoplay: TRUE
+            ratio="1/1"
+            autoPlayLeft={false}
+            autoPlayRight={true}
+          />
+
+
+          <Spacer size={5} />
+
+          {/* ================= SECTION 7: BROCHURE ================= */}
+          <TextBlock 
+            title="Brochure" 
+            text="An editorial guide accompanying visitors, providing the theoretical and technical keys needed to decode the dynamics of stereotyping analyzed in the rooms." 
+          />
+
+          {/* Image 13 (Tall 100) */}
+          <ImageRow 
+            h="tall" 
+            layout="100" 
+            src={[ p9[12].src ]} 
+            indices={[12]} 
+            onMediaClick={openLightbox}
+            useThumbnail={true}
+          />
+
+
+          <Spacer size={5} />
+
+          {/* ================= SECTION 8: TECHNOLOGIES ================= */}
+          <TextBlock 
+            title="Technologies and Prototyping" 
+            text="Iconic locations were modeled in 3D to extract depth maps. The final render was orchestrated via ComfyUI, using a custom LoRA (lightweight model fine-tuning) trained on the Tuscan aesthetic to clothe the geometry with photorealistic textures guided by prompts." 
+          />
+
+          {/* Row: Videos 15 & 16 (Tall 50-50) */}
+          <ImageRow 
+            h="tall" 
+            layout="50-50" 
+            src={[ p9[14].src, p9[15].src ]} 
+            indices={[14, 15]} 
+            onMediaClick={openLightbox}
+            useThumbnail={true}
+          />
+
+          {/* Row: Video 17 (Tall 100) */}
+          <ImageRow 
+            h="tall" 
+            layout="100" 
+            src={[ p9[16].src ]} 
+            indices={[16]} 
+            onMediaClick={openLightbox}
+            useThumbnail={true}
+          />
+
+          <CreditsBlock 
+              leftTitle="Laboratorio di Sistesi Finale"
+              leftBody={["Daniela Calabi", "Clorinda Galasso", "Marco Quaggiotto"]}
+              rightTitle="Group"
+              rightBody={["Andrea Gatti", "Arianna Lualdi", "Corinne Lisa Paterlini", "Elisa Paganoni"]}
+              logos={[
+                "/logos/polimi.png",
+                "/logos/dcxt.png"
+              ]}
+            />
+
+        </>
+      );
+    }
 
       default:
         return <div>Progetto non trovato</div>;

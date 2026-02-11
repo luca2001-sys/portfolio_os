@@ -154,4 +154,25 @@ export const PROJECTS_DATA: Record<string, ProjectMedia[]> = {
     { type: 'image', src: '/projects/p8/26.jpg' }, // Index 25
   ],
 
+  // === PROGETTO 9: VALLECHIARAA ===
+  "9": [
+    { type: 'image', src: '/projects/p9/01.jpg' }, // Index 0
+    { type: 'image', src: '/projects/p9/02.jpg' }, // Index 1
+    { type: 'video', src: '/projects/p9/03.mp4' }, // Index 2
+    { type: 'image', src: '/projects/p9/04.jpg' }, // Index 3
+    { type: 'image', src: '/projects/p9/05.jpg' }, // Index 4
+    { type: 'image', src: '/projects/p9/06.jpg' }, // Index 5
+    { type: 'image', src: '/projects/p9/07.jpg' }, // Index 6
+    { type: 'image', src: '/projects/p9/08.jpg' }, // Index 7
+    { type: 'image', src: '/projects/p9/09.jpg' }, // Index 8
+    { type: 'image', src: '/projects/p9/10.jpg' }, // Index 9
+    { type: 'image', src: '/projects/p9/11.jpg' }, // Index 10
+    { type: 'image', src: '/projects/p9/12.jpg' }, // Index 11
+    { type: 'image', src: '/projects/p9/13.jpg' }, // Index 12
+    { type: 'image', src: '/projects/p9/14.jpg' }, // Index 13
+    { type: 'video', src: '/projects/p9/15.mp4' }, // Index 14
+    { type: 'video', src: '/projects/p9/16.mp4' }, // Index 15
+    { type: 'video', src: '/projects/p9/17.mp4' }, // Index 16
+  ],
+
 };

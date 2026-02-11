@@ -122,3 +122,9 @@
     padding: 1px 3px;
   }
 }
+
+/* Universale */
+::selection {
+  background-color: #ffd0ed; 
+  color: black;
+}
