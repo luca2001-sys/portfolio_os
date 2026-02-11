@@ -356,16 +356,18 @@ function App() {
               onMediaClick={openLightbox}
               useThumbnail={true}
             />
-            
+
+            <Spacer size={5} />
+
             <IntroBlock 
-              link="https://youtu.be/nJ9tLW3XNIk (prova__prototipo_1)"
+              link="https://youtu.be/nJ9tLW3XNIk {prova__prototipo_1}"
             />
 
             <IntroBlock 
-              link="https://youtu.be/Q9CpwwsZOMk (prova__prototipo_2)"
+              link="https://youtu.be/Q9CpwwsZOMk {prova__prototipo_2}"
             />
 
-            <Spacer size={10} />             
+            <Spacer size={5} />             
 
             <CreditsBlock 
               leftTitle="Interaction Design - Laboratorio di sistemi per l’interazione"
@@ -1275,7 +1277,7 @@ function App() {
             year="2025"
             text={
               <>
-                A village that does not exist, built entirely on the expectations of its visitors. “Vallechiara: The Illusion of the Authentic” is a critical project analyzing the fracture between territorial reality and media representation.
+                A village that does not exist, built entirely on the expectations of its visitors. <u>“Vallechiara: The Illusion of the Authentic”</u> is a critical project analyzing the fracture between territorial reality and media representation.
                 <br /><br />
                 In a context where tourism communication tends to simplify the complexity of places to make them marketable, this project generates a visual paradox: a hyper-realistic place that, precisely in its perfection, reveals the standardized and stereotypical nature of today's territorial narratives.
               </>
@@ -1376,7 +1378,7 @@ function App() {
           {/* Single Video Tall*/}
           <SingleVideo 
             id="mYOPiVbuARw" 
-            ratio="3840/1080"
+            ratio="3840/1750"
             autoPlay={false}
           />
 
@@ -1400,7 +1402,7 @@ function App() {
           {/* Single Video Tall*/}
           <SingleVideo 
             id="GUayb60a4bw" 
-            ratio="3840/1080"
+            ratio="3840/1750"
             autoPlay={false}
           />
 
@@ -1421,7 +1423,6 @@ function App() {
             autoPlayRight={true}
           />
 
-
           <Spacer size={5} />
 
           {/* ================= SECTION 7: BROCHURE ================= */}
@@ -1439,7 +1440,6 @@ function App() {
             onMediaClick={openLightbox}
             useThumbnail={true}
           />
-
 
           <Spacer size={5} />
 
@@ -1468,6 +1468,14 @@ function App() {
             onMediaClick={openLightbox}
             useThumbnail={true}
           />
+
+          <Spacer size={5} />
+
+          <IntroBlock 
+              link="https://youtu.be/mbLxx1ia-O0 {simulazione__mostra}"
+          />
+
+          <Spacer size={5} />
 
           <CreditsBlock 
               leftTitle="Laboratorio di Sistesi Finale"
