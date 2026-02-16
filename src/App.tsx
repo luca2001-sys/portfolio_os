@@ -1163,43 +1163,6 @@ function App() {
               indices={[2, 3]} 
               onMediaClick={openLightbox}
             />
-
-            {/* --- RIGA DOPPIO VIDEO (Versione Senza Installazioni) --- */}
-            <div 
-              style={{ 
-                display: 'flex', 
-                flexWrap: 'wrap', // Questo fa andare a capo su mobile
-                gap: '10px',      
-                width: '100%',
-                marginBottom: '40px' 
-              }}
-            >
-              
-              {/* VIDEO SINISTRA */}
-              <div style={{ flex: '1 1 300px', position: 'relative', aspectRatio: '1/1' }}>
-                <iframe 
-                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                  src="https://www.youtube.com/embed/oJlnsYRFJxk?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1" 
-                  title="Video Sinistra"
-                  frameBorder="0" 
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                  allowFullScreen
-                />
-              </div>
-
-              {/* VIDEO DESTRA */}
-              <div style={{ flex: '1 1 300px', position: 'relative', aspectRatio: '1/1' }}>
-                <iframe 
-                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                  src="https://www.youtube.com/embed/ftN6vYfa4Tc?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1" 
-                  title="Video Destra"
-                  frameBorder="0" 
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                  allowFullScreen
-                />
-              </div>
-
-            </div>
             
             <Spacer size={5} />
 
