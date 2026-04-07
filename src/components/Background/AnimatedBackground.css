@@ -4,17 +4,21 @@
 
 /* Definizione per il REGULAR (Peso 400/Normal) */
 @font-face {
-    font-family: 'AlteHaas'; /* Stesso nome famiglia */
+    font-family: 'AlteHaas';
+    /* Stesso nome famiglia */
     src: url('../../assets/font/AlteHaasGroteskRegular.ttf') format('truetype');
-    font-weight: 400; /* Indica al browser che questo file è per il peso normale */
+    font-weight: 400;
+    /* Indica al browser che questo file è per il peso normale */
     font-style: normal;
 }
 
 /* Definizione per il BOLD (Peso 700/Bold) */
 @font-face {
-    font-family: 'AlteHaas'; /* NOTA: Usiamo lo STESSO nome famiglia */
+    font-family: 'AlteHaas';
+    /* NOTA: Usiamo lo STESSO nome famiglia */
     src: url('../../assets/font/AlteHaasGroteskBold.ttf') format('truetype');
-    font-weight: 700; /* Indica al browser che questo file è per il grassetto */
+    font-weight: 700;
+    /* Indica al browser che questo file è per il grassetto */
     font-style: bold;
 }
 

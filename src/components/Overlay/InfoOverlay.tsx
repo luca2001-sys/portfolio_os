@@ -15,7 +15,9 @@ const InfoOverlay: React.FC<InfoOverlayProps> = ({ isOpen, onClose, children }) 
   // Utilizziamo useEffect per attaccare un listener globale alla finestra.
   // Questo ci permette di "vedere" anche i bottoni della Navbar che stanno sopra l'overlay.
   useEffect(() => {
-    if (!isOpen) return;
+    // Esci se palesemente su mobile o touch
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (!isOpen || isTouchDevice) return;
 
     const handleGlobalMouseMove = (e: MouseEvent) => {
       if (!cursorRef.current) return;
@@ -24,19 +26,12 @@ const InfoOverlay: React.FC<InfoOverlayProps> = ({ isOpen, onClose, children }) 
       cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
 
       // 2. LOGICA INTELLIGENTE: Quando nascondere la X?
-      // Controlliamo cosa sta toccando il mouse in questo momento
       const target = e.target as HTMLElement;
-
-      // Nascondi se:
-      // A. Siamo sopra il contenuto di testo dell'overlay (.overlay-content)
-      // B. Siamo sopra un qualsiasi BOTTONE (inclusa la Navbar!)
-      // C. Siamo sopra un link (<a>)
       const isHoveringInteractive = 
         target.closest('.overlay-content') !== null || 
         target.closest('button') !== null ||
         target.tagName === 'A';
 
-      // Applica l'opacità direttamente (molto più veloce di useState)
       cursorRef.current.style.opacity = isHoveringInteractive ? '0' : '1';
     };
 

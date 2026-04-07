@@ -53,7 +53,8 @@ const UniversalModal: React.FC<UniversalModalProps> = ({
           />
 
           {/* 2. FINESTRA */}
-          <motion.div
+          <Box
+            component={motion.div}
             drag
             dragListener={false}
             dragControls={dragControls}
@@ -66,15 +67,15 @@ const UniversalModal: React.FC<UniversalModalProps> = ({
             exit={{ opacity: 0, scale: 0.95, y: "-40%", x: "-50%" }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
 
-            style={{
+            sx={{
               position: 'fixed',
               top: '50%',
               left: '50%',
               
-              width: '750px',
-              maxWidth: '92vw',
-              height: '80vh',
-              maxHeight: '900px',
+              width: { xs: '100vw', md: '750px' },
+              maxWidth: { xs: '100vw', md: '92vw' },
+              height: { xs: '100dvh', md: '80vh' },
+              maxHeight: { xs: 'none', md: '900px' },
               
               backgroundColor: backgroundColor || '#ffffff', 
               
@@ -150,13 +151,13 @@ const UniversalModal: React.FC<UniversalModalProps> = ({
                 onClick={onClose}
                 disableRipple
                 sx={{
-                  height: '25px',
-                  minWidth: 'auto',                  
+                  height: { xs: '40px', md: '25px' },
+                  minWidth: { xs: '40px', md: 'auto' },                  
                   color: '#ffffff',
                   backgroundColor: '#000000',
                   mixBlendMode: 'difference',
                   borderRadius: 0,
-                  padding: '0px 20px',       // Padding laterale
+                  padding: { xs: '0px 10px', md: '0px 20px' },       // Padding laterale
                   
                   // Bordo opzionale (nero su nero di base)
                   border: '1px solid #000000',
@@ -179,8 +180,8 @@ const UniversalModal: React.FC<UniversalModalProps> = ({
               sx={{
                 flexGrow: 1,
                 overflowY: 'auto',
-                // MODIFICA: Aumentato padding TOP (50px) per non finire sotto l'header all'inizio
-                padding: '30px 10px 10px 10px', 
+                // MODIFICA: Aumentato padding TOP per mobile (dato l'header più alto)
+                padding: { xs: '50px 10px 10px 10px', md: '30px 10px 10px 10px' }, 
                 
                 fontFamily: "'Hanken Grotesk', sans-serif",
                 fontWeight: 400,
@@ -194,7 +195,7 @@ const UniversalModal: React.FC<UniversalModalProps> = ({
             >
               {children}
             </Box>
-          </motion.div>
+          </Box>
         </>
       )}
     </AnimatePresence>

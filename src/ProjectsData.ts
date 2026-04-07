@@ -3,6 +3,14 @@ export interface ProjectMedia {
   src: string;
 }
 
+export interface ProjectInfo {
+  id: string;
+  title: string;
+  year: string;
+  cover: string;
+  bgColor: string;
+}
+
 export const PROJECTS_DATA: Record<string, ProjectMedia[]> = {
 
 // === PROGETTO 1: BODY OF EVIDENCE ===
@@ -175,4 +183,79 @@ export const PROJECTS_DATA: Record<string, ProjectMedia[]> = {
     { type: 'video', src: '/projects/p9/17.mp4' }, // Index 16
   ],
 
+
 };
+
+export interface ProjectInfo {
+  id: string;
+  title: string;
+  year: string;
+  cover: string;
+  bgColor: string;
+}
+
+export const PROJECTS_LIST: ProjectInfo[] = [
+  {
+    id: "1",
+    title: "BODY OF EVIDENCE",
+    year: "2025",
+    cover: "/projects/p1/cover.jpg",
+    bgColor: "#E9E9E9"
+  },
+  {
+    id: "2",
+    title: "DIPARTIMENTO DI ARCHITETTURA",
+    year: "2023",
+    cover: "/projects/p2/cover.jpg",
+    bgColor: "#ffffff"
+  },
+  {
+    id: "3",
+    title: "IL SILENZIO NON ESISTE",
+    year: "2025",
+    cover: "/projects/p3/cover.jpg",
+    bgColor: "#f0f0f0"
+  },
+  {
+    id: "4",
+    title: "SAVE THE KEYS",
+    year: "2025",
+    cover: "/projects/p4/cover.jpg",
+    bgColor: "#fffbfbff"
+  },
+  {
+    id: "5",
+    title: "CHLADNI MUSIK FEST",
+    year: "2024",
+    cover: "/projects/p5/cover.jpg",
+    bgColor: "#FFFFFF"
+  },
+  {
+    id: "6",
+    title: "IO:BRAND",
+    year: "2023",
+    cover: "/projects/p6/01.jpg",
+    bgColor: "#F4F4F4"
+  },
+  {
+    id: "7",
+    title: "DAY-DREAM",
+    year: "2023",
+    cover: "/projects/p7/cover.jpg",
+    bgColor: "#ffffff"
+  },
+  {
+    id: "8",
+    title: "ALIENZ",
+    year: "2021",
+    cover: "/projects/p8/09.jpg",
+    bgColor: "#ffffff"
+  },
+  {
+    id: "9",
+    title: "VALLECHIARA",
+    year: "2021",
+    cover: "/projects/p9/cover.jpg",
+    bgColor: "#ffffff"
+  },
+];
