@@ -16,7 +16,6 @@ const UniversalModal: React.FC<UniversalModalProps> = ({
   isOpen,
   onClose,
   title,
-  
   backgroundColor,
   children
 }) => {
@@ -47,7 +46,7 @@ const UniversalModal: React.FC<UniversalModalProps> = ({
               left: 0,
               width: '100vw',
               height: '100vh',
-              backgroundColor: 'rgba(0,0,0,0)', 
+              backgroundColor: 'rgba(0,0,0,0)',
               zIndex: 9998,
             }}
           />
@@ -61,7 +60,7 @@ const UniversalModal: React.FC<UniversalModalProps> = ({
             dragMomentum={false}
             dragElastic={10}         // Disattiva effetto elastico ai bordi
             dragTransition={{ power: 0, timeConstant: 0 }}
-            
+
             initial={{ opacity: 0, scale: 0.95, y: "-40%", x: "-50%" }}
             animate={{ opacity: 1, scale: 1, y: "-50%", x: "-50%" }}
             exit={{ opacity: 0, scale: 0.95, y: "-40%", x: "-50%" }}
@@ -71,17 +70,17 @@ const UniversalModal: React.FC<UniversalModalProps> = ({
               position: 'fixed',
               top: '50%',
               left: '50%',
-              
+
               width: { xs: '100vw', md: '750px' },
               maxWidth: { xs: '100vw', md: '92vw' },
               height: { xs: '100dvh', md: '80vh' },
               maxHeight: { xs: 'none', md: '900px' },
-              
-              backgroundColor: backgroundColor || '#ffffff', 
-              
+
+              backgroundColor: backgroundColor || '#ffffff',
+
               zIndex: 9999,
               boxShadow: 'none',
-              
+
               display: 'flex',
               flexDirection: 'column',
               overflow: 'hidden'
@@ -95,10 +94,10 @@ const UniversalModal: React.FC<UniversalModalProps> = ({
                 top: 0,
                 left: 0,
                 width: '100%',
-                
+
                 display: 'flex',
                 justifyContent: 'space-between',
-                alignItems: 'flex-start', 
+                alignItems: 'flex-start',
                 backgroundColor: 'transparent',
                 padding: 0,
                 cursor: 'grab',
@@ -106,34 +105,34 @@ const UniversalModal: React.FC<UniversalModalProps> = ({
                 zIndex: 10
               }}
             >
-              
+
               {/* HEADER - TITOLO */}
-              <Box sx={{ 
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  height: '25px', 
-                  backgroundColor: '#000000',
-                  color: '#ffffff',
-                  padding: '0px 10px', // Aumentato leggermente per estetica
-                  
-                  // --- FIX RESPONSIVE ---
-                  // Su mobile (xs) margine piccolo, su Desktop (md) margine grande
-                  marginLeft: { xs: '10px', md: '150px' }, 
-                  
-                  // Limita la larghezza massima per non andare sopra il tasto X
-                  maxWidth: { xs: 'calc(100% - 70px)', md: '60%' }, 
-                  
-                  border: '1px solid #000000',
-                  
-                  // Gestione overflow per mantenere l'altezza fissa
-                  overflow: 'hidden' 
-                }}>
-                <span style={{ 
+              <Box sx={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                height: '25px',
+                backgroundColor: '#000000',
+                color: '#ffffff',
+                padding: '0px 10px', // Aumentato leggermente per estetica
+
+                // --- FIX RESPONSIVE ---
+                // Su mobile (xs) margine piccolo, su Desktop (md) margine grande
+                marginLeft: { xs: '10px', md: '150px' },
+
+                // Limita la larghezza massima per non andare sopra il tasto X
+                maxWidth: { xs: 'calc(100% - 70px)', md: '60%' },
+
+                border: '1px solid #000000',
+
+                // Gestione overflow per mantenere l'altezza fissa
+                overflow: 'hidden'
+              }}>
+                <span style={{
                   fontFamily: 'AlteHaas',
-                  fontSize: '15px', 
+                  fontSize: '15px',
                   fontWeight: 700,
                   lineHeight: '25px', // Allinea il testo verticalmente all'altezza del box
-                  
+
                   // --- FIX TESTO ---
                   whiteSpace: 'nowrap',      // Impedisce di andare a capo
                   overflow: 'hidden',        // Nasconde l'eccesso
@@ -147,23 +146,23 @@ const UniversalModal: React.FC<UniversalModalProps> = ({
 
               {/* HEADER - CHIUDI */}
               <IconButton
-                onPointerDown={(e) => e.stopPropagation()} 
+                onPointerDown={(e) => e.stopPropagation()}
                 onClick={onClose}
                 disableRipple
                 sx={{
                   height: { xs: '40px', md: '25px' },
-                  minWidth: { xs: '40px', md: 'auto' },                  
+                  minWidth: { xs: '40px', md: 'auto' },
                   color: '#ffffff',
                   backgroundColor: '#000000',
                   mixBlendMode: 'difference',
                   borderRadius: 0,
                   padding: { xs: '0px 10px', md: '0px 20px' },       // Padding laterale
-                  
+
                   // Bordo opzionale (nero su nero di base)
                   border: '1px solid #000000',
 
-                  '&:hover': { 
-                    backgroundColor: '#ffffff', 
+                  '&:hover': {
+                    backgroundColor: '#ffffff',
                     color: 'black',
                     // Se vuoi il bordo nero in hover:
                     borderColor: '#000000'
@@ -173,7 +172,7 @@ const UniversalModal: React.FC<UniversalModalProps> = ({
                 {/* Nota: Ho rimosso fontFamily dall'icona perché è un SVG, non testo */}
                 <CloseIcon sx={{ fontSize: '20px' }} />
               </IconButton>
-</div>
+            </div>
 
             {/* --- CONTENUTO --- */}
             <Box
@@ -181,8 +180,8 @@ const UniversalModal: React.FC<UniversalModalProps> = ({
                 flexGrow: 1,
                 overflowY: 'auto',
                 // MODIFICA: Aumentato padding TOP per mobile (dato l'header più alto)
-                padding: { xs: '50px 10px 10px 10px', md: '30px 10px 10px 10px' }, 
-                
+                padding: { xs: '50px 10px 10px 10px', md: '30px 10px 10px 10px' },
+
                 fontFamily: "'Hanken Grotesk', sans-serif",
                 fontWeight: 400,
                 letterSpacing: '-0.04em',
