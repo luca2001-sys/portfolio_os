@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, Suspense } from "react";
+import { useMemo, useRef, useState, Suspense, lazy } from "react";
 import { useContainerObserver } from "./hooks/useContainerObserver";
 import AnimatedBackground from "./components/Background/AnimatedBackground";
 import Navbar from "./components/Navbar/Menu";
@@ -14,8 +14,10 @@ import CvView from "./components/Overlay/CvView";
 import { ProjectRegistry } from './projects';
 import { ProjectSkeleton } from './components/UI';
 
-// --- LIGHTBOX IMPORTS ---
-import { PortfolioLightbox } from "./components/Modal/PortfolioLightbox";
+// --- LIGHTBOX: caricata in modo lazy, solo quando l'utente la apre ---
+const PortfolioLightbox = lazy(() =>
+  import('./components/Modal/PortfolioLightbox').then(m => ({ default: m.PortfolioLightbox }))
+);
 
 
 function App() {
@@ -123,13 +125,17 @@ function App() {
         {overlayMode === 'cv' && <CvView />}
       </InfoOverlay>
 
-      {/* --- LIGHTBOX COMPONENT --- */}
-      <PortfolioLightbox 
-         projectId={selectedId}
-         isOpen={lightboxOpen}
-         onClose={() => setLightboxOpen(false)}
-         index={lightboxIndex}
-      />
+      {/* --- LIGHTBOX COMPONENT: lazy, caricata solo alla prima apertura --- */}
+      {lightboxOpen && (
+        <Suspense fallback={null}>
+          <PortfolioLightbox
+            projectId={selectedId}
+            isOpen={lightboxOpen}
+            onClose={() => setLightboxOpen(false)}
+            index={lightboxIndex}
+          />
+        </Suspense>
+      )}
     </>
   );
 }
