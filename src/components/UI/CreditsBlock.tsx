@@ -17,14 +17,26 @@ export const CreditsBlock = ({
       {/* Colonna Sinistra (Allineata a Sinistra - 0px) */}
       <Box sx={{ width: '67%', textAlign: 'left' }}>
         <Box sx={{
-          fontFamily: "'Hanken Grotesk', sans-serif", fontSize: '15px', fontWeight: 500,
-          textDecoration: 'underline', textUnderlineOffset: '2px', marginBottom: '5px', color: '#000'
+          fontFamily: "'Inter', sans-serif",
+          fontSize: { xs: '16px', md: '14px' },
+          fontWeight: 500,
+          letterSpacing: '0',
+          lineHeight: 1.25,
+          textDecoration: 'underline',
+          textUnderlineOffset: '2px',
+          marginBottom: '5px',
+          color: '#000'
         }}>
           {leftTitle}
         </Box>
         {leftBody.map((line, i) => (
           <Box key={i} sx={{
-            fontFamily: "'Hanken Grotesk', sans-serif", fontSize: '15px', lineHeight: 1.2, color: 'rgba(0, 0, 0, 0.5)'
+            fontFamily: "'Inter', sans-serif",
+            fontSize: { xs: '16px', md: '14px' },
+            letterSpacing: '0',
+            lineHeight: 1.25,
+            fontWeight: 500,
+            color: 'rgba(0, 0, 0, 0.5)'
           }}>
             {line}
           </Box>
@@ -34,14 +46,24 @@ export const CreditsBlock = ({
       {/* Colonna Destra (Allineata a Destra - 100%) */}
       <Box sx={{ width: '33%', textAlign: 'right' }}>
         <Box sx={{
-          fontFamily: "'Hanken Grotesk', sans-serif", fontSize: '15px', fontWeight: 500,
-          marginBottom: '5px', color: '#000'
+          fontFamily: "'Inter', sans-serif",
+          fontSize: { xs: '16px', md: '14px' },
+          fontWeight: 500,
+          letterSpacing: '0',
+          lineHeight: 1.25,
+          marginBottom: '5px',
+          color: '#000'
         }}>
           {rightTitle}
         </Box>
         {rightBody.map((line, i) => (
           <Box key={i} sx={{
-            fontFamily: "'Hanken Grotesk', sans-serif", fontSize: '15px', lineHeight: 1.2, color: 'rgba(0, 0, 0, 0.5)'
+            fontFamily: "'Inter', sans-serif",
+            fontSize: { xs: '16px', md: '14px' },
+            letterSpacing: '0',
+            lineHeight: 1.25,
+            fontWeight: 500,
+            color: 'rgba(0, 0, 0, 0.5)'
           }}>
             {line}
           </Box>

@@ -6,27 +6,36 @@ export const TextBlock = ({ title, text }: { title?: string, text?: React.ReactN
   <Box sx={{ marginBottom: '10px' }}>
     {title && (
       <Box sx={{ marginBottom: '5px' }}>
-        <span style={{
-          fontFamily: "'Hanken Grotesk', sans-serif", 
-          fontSize: '15px',
-          textDecoration: 'underline', 
-          textUnderlineOffset: '2px'
-        }}>
+        <Box
+          component="span"
+          sx={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: { xs: '16px', md: '14px' },
+            fontWeight: 500,
+            letterSpacing: '0',
+            lineHeight: 1.25,
+            textDecoration: 'underline',
+            textUnderlineOffset: '2px',
+          }}
+        >
           {title}
-        </span>
+        </Box>
       </Box>
     )}
-    <Box sx={{
-      marginTop: '-5px', 
-      fontFamily: "'Hanken Grotesk', sans-serif",
-      fontSize: '15px', 
-      letterSpacing: '-0.03em', 
-      lineHeight: 1.15,
-      textIndent: layoutTokens.INDENT, 
-      textAlign: 'left', 
-      color: 'rgba(0, 0, 0, 0.5)'
-    }}>
-      {text}
-    </Box>
+    {text && (
+      <Box sx={{
+        marginTop: '-5px',
+        fontFamily: "'Inter', sans-serif",
+        fontSize: { xs: '16px', md: '14px' },
+        letterSpacing: '0',
+        lineHeight: 1.25,
+        fontWeight: 500,
+        textIndent: layoutTokens.INDENT,
+        textAlign: 'left',
+        color: 'rgba(0, 0, 0, 0.5)',
+      }}>
+        {text}
+      </Box>
+    )}
   </Box>
 );

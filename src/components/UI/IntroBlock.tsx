@@ -23,12 +23,21 @@ export const IntroBlock = ({
     flexDirection: isOverlay ? { xs: 'column', md: 'row' } : 'row',
     gap: isOverlay ? { xs: '5px', md: '0px' } : '0px'
   }}>
-    <Box sx={{ width: layoutTokens.INDENT, flexShrink: 0, fontSize: '20px' }}>
+    <Box sx={{
+      width: layoutTokens.INDENT,
+      flexShrink: 0,
+      fontSize: isOverlay ? { xs: '16px', md: '14px' } : '20px',
+      fontFamily: isOverlay ? "'Inter', sans-serif" : "'Hanken Grotesk', sans-serif"
+    }}>
       {isOverlay ? (
         <Box component="span" sx={{
           backgroundColor: '#000000ff',
           color: '#ffffffff',
           padding: '0px 3px',
+          fontFamily: "'Inter', sans-serif",
+          fontWeight: 500,
+          letterSpacing: '0',
+          lineHeight: 1.25,
           ...customYearStyle
         }}>
           {year}
@@ -41,11 +50,11 @@ export const IntroBlock = ({
     <Box sx={{ flexGrow: 1, width: '100%' }}>
       <Box sx={{
         textIndent: isOverlay ? { xs: '0px', md: layoutTokens.INDENT_TEXT.md } : layoutTokens.INDENT_TEXT,
-        fontFamily: "'Hanken Grotesk', sans-serif",
-        fontSize: "20px",
-        letterSpacing: "-0.04em",
-        fontWeight: 400,
-        lineHeight: 1.15,
+        fontFamily: isOverlay ? "'Inter', sans-serif" : "'Hanken Grotesk', sans-serif",
+        fontSize: isOverlay ? { xs: '16px', md: '14px' } : "20px",
+        letterSpacing: isOverlay ? "0" : "-0.04em",
+        fontWeight: isOverlay ? 500 : 400,
+        lineHeight: isOverlay ? 1.25 : 1.15,
         textAlign: "left"
       }}>
         {text}

@@ -7,15 +7,16 @@ export const CvSectionHeader = ({ label }: { label: string }) => (
     display: 'flex',
     alignItems: 'center',
     marginBottom: '15px',
-    fontFamily: "'Hanken Grotesk', sans-serif",
-    fontSize: '20px',
-    letterSpacing: '-0.04em',
-    lineHeight: 1.15,
+    fontFamily: "'Inter', sans-serif",
+    fontSize: { xs: '16px', md: '14px' },
+    letterSpacing: '0',
+    lineHeight: 1.25,
   }}>
     <Box component="span" sx={{
       backgroundColor: '#000000',
       color: '#ffffff',
       padding: '0px 3px',
+      fontWeight: 500,
     }}>
       {label}
     </Box>
@@ -35,26 +36,25 @@ interface CvBlockProps {
 export const CvBlock = ({ date, role, company, bullets, customDateStyle, topSpacing }: CvBlockProps) => (
   <Box sx={{
     display: 'grid',
-    gridTemplateColumns: { xs: '1fr', md: '140px 260px 1fr' },
-    columnGap: { xs: '0px', md: '72px' },
+    gridTemplateColumns: { xs: '1fr', md: '130px 36px 1fr 72px 1fr' },
+    columnGap: '0px',
     rowGap: { xs: '18px', md: '0px' },
     marginBottom: { xs: '40px', md: '20px' },
     paddingTop: topSpacing ? '36px' : '0px',
-    fontFamily: "'Hanken Grotesk', sans-serif",
-    fontSize: '20px',
-    letterSpacing: '-0.04em',
-    fontWeight: 400,
-    lineHeight: 1.15,
+    fontFamily: "'Inter', sans-serif",
+    fontSize: { xs: '16px', md: '14px' },
+    letterSpacing: '0',
+    fontWeight: 500,
+    lineHeight: 1.25,
     color: '#000000ff',
   }}>
 
     {/* Col 1 — Data: no sfondo nero */}
-    <Box sx={{ flexShrink: 0 }}>
+    <Box sx={{ flexShrink: 0, gridColumn: { xs: 'auto', md: '1' } }}>
       <Box
         component="span"
         sx={{
           display: 'inline-block',
-          fontSize: '18px',
           ...customDateStyle,
         }}
       >
@@ -63,7 +63,7 @@ export const CvBlock = ({ date, role, company, bullets, customDateStyle, topSpac
     </Box>
 
     {/* Col 2 — Azienda (nera, sempre renderizzata per mantenere la griglia) */}
-    <Box sx={{ fontSize: '18px', color: '#000000', display: company ? 'block' : { xs: 'none', md: 'block' } }}>
+    <Box sx={{ color: '#000000', display: company ? 'block' : { xs: 'none', md: 'block' }, gridColumn: { xs: 'auto', md: '3' } }}>
       {company ? (
         <Box
           component="span"
@@ -77,7 +77,7 @@ export const CvBlock = ({ date, role, company, bullets, customDateStyle, topSpac
     </Box>
 
     {/* Col 3 — Ruolo (prima riga nera) + Bullet (semitrasparenti) */}
-    <Box>
+    <Box sx={{ gridColumn: { xs: 'auto', md: '5' } }}>
       {role ? (
         <Box sx={{ fontWeight: 500, color: '#000000' }}>
           {role}

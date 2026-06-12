@@ -89,23 +89,6 @@ const CvView = () => {
         }
       />
 
-      <CvBlock
-        date="LANGUAGES"
-        role={null}
-        topSpacing
-        customDateStyle={{
-          backgroundColor: '#000000',
-          color: '#ffffff',
-          padding: '0px 3px',
-        }}
-        bullets={
-          <>
-            Italian<br />
-            English<br />
-            Spanish
-          </>
-        }
-      />
     </>
   );
 };

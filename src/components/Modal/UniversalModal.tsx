@@ -182,11 +182,11 @@ const UniversalModal: React.FC<UniversalModalProps> = ({
                 // MODIFICA: Aumentato padding TOP per mobile (dato l'header più alto)
                 padding: { xs: '50px 10px 10px 10px', md: '30px 10px 10px 10px' },
 
-                fontFamily: "'Hanken Grotesk', sans-serif",
-                fontWeight: 400,
-                letterSpacing: '-0.04em',
-                fontSize: '20px',
-                lineHeight: 1.15,
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 500,
+                letterSpacing: '0',
+                fontSize: { xs: '16px', md: '14px' },
+                lineHeight: 1.25,
                 textAlign: 'left',
                 '&::-webkit-scrollbar': { width: '4px' },
                 '&::-webkit-scrollbar-thumb': { background: '#000' },
