@@ -1,146 +1,110 @@
-import { IntroBlock, Spacer } from "../../components/UI";
+import { CvBlock, CvSectionHeader, Spacer } from "../../components/UI";
 
 const CvView = () => {
   return (
     <>
-      {/* HEADER: EDUCATION */}
-      <IntroBlock
-        year="_EDUCATION"
-        text=""
-        isOverlay={true}
-        customYearStyle={{
-          backgroundColor: '#ffffff',
-          color: '#000000',
-          border: '1px solid #000000',
-          fontWeight: 'bold'
-        }}
+      {/* ─── EDUCATION ─── */}
+      <CvSectionHeader label="EDUCATION" />
+
+      <CvBlock
+        date="2024 – PRES"
+        role="MA in Communication Design"
+        company={<>Politecnico di Milano<br />Milan (IT)</>}
       />
 
-      {/* 1. MASTER (Presente) */}
-      <IntroBlock
-        year="2024–PRES"
-        text={
-          <>
-            <u>Master’s Degree - Communication Design</u><br />
-            Politecnico di Milano<br />
-            Milan (IT)
-          </>
-        }
-        isOverlay={true}
+      <CvBlock
+        date="2020 – 2023"
+        role="Bachelor's Degree in Design"
+        company={<>Università "G. D'Annunzio"<br />Pescara (IT)</>}
       />
 
-      {/* 2. BACHELOR */}
-      <IntroBlock
-        year="2020–2023"
-        text={
-          <>
-            <u>Bachelor’s Degree - Design</u><br />
-            Università degli Studi “Gabriele D’Annunzio”<br />
-            Pescara (IT)
-          </>
-        }
-        isOverlay={true}
+      <CvBlock
+        date="02/22 – 07/22"
+        role="Industrial Design and Product Development"
+        company={<>University of Málaga<br />Málaga (ES)</>}
       />
 
-      {/* 3. ERASMUS */}
-      <IntroBlock
-        year="2022"
-        // --- STILE CUSTOM BANDIERA ---
-        customYearStyle={{
-          // Sovrascriviamo il tuo sfondo nero con la bandiera
-          background: 'linear-gradient(90deg, #AA151B 0%, #AA151B 25%, #F1BF00 25%, #F1BF00 75%, #AA151B 75%, #AA151B 100%)',
-          color: '#ffffff', // Testo nero
-          fontWeight: '900',
-          border: '1px solid #000' // Opzionale: bordino per definizione
-        }}
-        text={
-          <>
-            <u>Erasmus - Design and Product Development</u><br />
-            Universidad de Málaga<br />
-            Málaga (ES)
-          </>
-        }
-        isOverlay={true}
+      <CvBlock
+        date="2015 – 2020"
+        role="High School Diploma in Computer Science"
+        company={<>Technical Institute<br />SGR (FG)</>}
       />
 
-      {/* 4. DIPLOMA */}
-      <IntroBlock
-        year="2015–2020"
-        text={
-          <>
-            <u>High School Diploma in Computer Science</u><br />
-            Technical Institute “Luigi Di Maggio”<br />
-            San Giovanni Rotondo (IT)
-          </>
-        }
-        isOverlay={true}
-      />
-
-      {/* --- SEZIONE WORK --- */}
-
+      {/* ─── WORK EXPERIENCE ─── */}
       <Spacer size={30} />
+      <CvSectionHeader label="WORK" />
 
-      <IntroBlock
-        year="_WORK"
-        text=""
-        isOverlay={true}
-        customYearStyle={{
-          backgroundColor: '#ffffff',
-          color: '#000000',
-          border: '1px solid #000000',
-          fontWeight: 'bold'
+      <CvBlock
+        date="06/2026 – PRES"
+        role="UX/UI Designer & Front-End Developer"
+        company="VISLAVIE"
+        bullets={
+          <>
+            • Interface Development<br />
+            • Shopify Readiness<br />
+            • AI-Assisted Development<br />
+            • AI Model generation & dressing<br />
+            • Bulk Asset Management
+          </>
+        }
+      />
+
+      <CvBlock
+        date="05/2026 – PRES"
+        role="Visual Designer & Social Media Strategist"
+        company="FIRM.GS"
+        bullets={
+          <>
+            • Template System Design<br />
+            • Social Media Strategy
+          </>
+        }
+      />
+
+      <CvBlock
+        date="09/2025 – 12/2025"
+        role="Social Media Manager"
+        company="Politecnico di Milano"
+        bullets={
+          <>
+            • Storytelling<br />
+            • Editing<br />
+            • Social Media Content
+          </>
+        }
+      />
+
+      <CvBlock
+        date="07/2023 – 09/2023"
+        role="Graphic & Print Designer"
+        company="Cromya Studio"
+        bullets={
+          <>
+            • Printing<br />
+            • Apparel<br />
+            • Vehicles<br />
+            • Catering / Restaurants<br />
+            • Storefronts
+          </>
+        }
+      />
+
+      <CvBlock
+        date="LANGUAGES"
+        role={null}
+        topSpacing
+        customDateStyle={{
+          backgroundColor: '#000000',
+          color: '#ffffff',
+          padding: '0px 3px',
         }}
-      />
-
-      {/* 1. POLITECNICO DI MILANO (Sett 2025 - Dic 2025) */}
-      <IntroBlock
-        year="09/2025-12/2025"
-        text={
+        bullets={
           <>
-            <u>Social Media Manager - 200h</u><br />
-            Politecnico di Milano<br />
-            Milan (IT)<br /><br />
-
-            • Storytelling and scripting<br />
-            • Video editing (short-form)<br />
-            • Content creation (IG/TikTok)
+            Italian<br />
+            English<br />
+            Spanish
           </>
         }
-        isOverlay={true}
-      />
-
-      {/* 2. CROMYA (Lug 2023 - Set 2023) */}
-      <IntroBlock
-        year="06/2023-09/2023"
-        text={
-          <>
-            <u>Graphic Designer & Print Specialist</u><br />
-            Cromya<br />
-            San Giovanni Rotondo (IT)<br /><br />
-
-            • Small and large format printing<br />
-            • Branding on vehicles and clothing<br />
-            • Graphics for restaurants and shops
-          </>
-        }
-        isOverlay={true}
-      />
-
-      {/* 3. EMILIO DECORI (Nov 2023 - Lug 2024) */}
-      <IntroBlock
-        year="09/2023–06/2024"
-        text={
-          <>
-            <u>Drywall installer and painter</u><br />
-            Emilio Decori<br />
-            San Giovanni Rotondo (IT)<br /><br />
-
-            • Plasterboard assembly<br />
-            • Finishing and sanding<br />
-            • Painting and textures
-          </>
-        }
-        isOverlay={true}
       />
     </>
   );

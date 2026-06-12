@@ -1,5 +1,6 @@
 export * from './layoutTokens';
 export * from './IntroBlock';
+export * from './CvBlock';
 export * from './TextBlock';
 export * from './Spacer';
 export * from './MediaItem';
